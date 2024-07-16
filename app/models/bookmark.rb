@@ -1,6 +1,6 @@
 class Bookmark < ApplicationRecord
-  belongs_to :users
-  belongs_to :spots
+  belongs_to :user
+  belongs_to :spot
 
   # Note validations
   validates :note, presence: true
