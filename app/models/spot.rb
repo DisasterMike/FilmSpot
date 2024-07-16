@@ -1,7 +1,7 @@
 class Spot < ApplicationRecord
   belongs_to :user
-  has_many :bookings
-  has_many :bookmarks
+  has_many :bookings, dependent: :destroy
+  has_many :bookmarks, dependent: :destroy
 
   # name validations
   validates :name, presence: true
