@@ -1,9 +1,11 @@
 <h1>Add Spot</h1>
-
-<%= simple_form_for(@spot) do |t| %>
-  <%= t.input :name %>
-  <%= t.input :address %>
-  <%= t.input :description %>
-  <%= t.input :category %>
-  <%= t.input :daily_rate %>
-<% end %>
+<div class="form-container">
+  <%= simple_form_for(@spot) do |t| %>
+    <%= t.input :name %>
+    <%= t.input :address %>
+    <%= t.input :description %>
+    <%= t.input :category %>
+    <%= t.input :daily_rate %>
+    <%= t.submit class: "btn btn-primary" %>
+  <% end %>
+</div>

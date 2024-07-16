@@ -11,11 +11,10 @@ class SpotsController < ApplicationController
 
   def create
     @spot = Spot.new(spots_params)
-    if @spot.save
-      redirect_to owner_spots_show_path(@spot)
-    else
-      render :new
-    end
+    @user = User.find(params[:id])
+    @spot.users_id = @user
+    @spot.save
+    raise
   end
 
   private
