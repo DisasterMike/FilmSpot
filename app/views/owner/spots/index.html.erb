@@ -1,2 +1,12 @@
 <h1>Owner::Spots#index</h1>
 <p>Find me in app/views/owner/spots/index.html.erb</p>
+<p>Owner: <%= @user.name %></p>
+<% @spots.each do |spot| %>
+  <div>
+    <h3><%= spot.name %></h3>
+    <p>Address: <%= spot.address %></p>
+    <p>Description: <%= spot.description %></p>
+    <p>Category: <%= spot.category %></p>
+    <p>Daily Rate: <%= spot.daily_rate %></p>
+  </div>
+<% end %>
