@@ -11,8 +11,8 @@ class SpotsController < ApplicationController
 
   def create
     @spot = Spot.new(spots_params)
-    @user = User.find(params[:id])
-    @spot.users_id = @user
+    @user = User.find(params[:user_id])
+    @spot.user_id = @user
     @spot.save
     raise
   end
