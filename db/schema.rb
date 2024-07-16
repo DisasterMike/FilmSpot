@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_16_111554) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_16_111805) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -42,10 +42,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_16_111554) do
     t.text "description"
     t.string "category"
     t.float "daily_rate"
-    t.bigint "users_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["users_id"], name: "index_spots_on_users_id"
+    t.index ["user_id"], name: "index_spots_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -67,5 +67,5 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_16_111554) do
   add_foreign_key "bookings", "users"
   add_foreign_key "bookmarks", "spots"
   add_foreign_key "bookmarks", "users"
-  add_foreign_key "spots", "users", column: "users_id"
+  add_foreign_key "spots", "users"
 end
