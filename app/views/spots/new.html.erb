@@ -1,2 +1,9 @@
-<h1>Spots#New</h1>
-<p>Find me in app/views/spots/show.html.erb</p>
+<h1>Add Spot</h1>
+
+<%= simple_form_for(@spot) do |t| %>
+  <%= t.input :name %>
+  <%= t.input :address %>
+  <%= t.input :description %>
+  <%= t.input :category %>
+  <%= t.input :daily_rate %>
+<% end %>
