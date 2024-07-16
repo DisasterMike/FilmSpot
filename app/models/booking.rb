@@ -3,7 +3,7 @@ class Booking < ApplicationRecord
   belongs_to :spot
 
   # date validations
-  validates :date, presence: true
+  validates :booking_date, presence: true
 
   # status validations
   validates :status, presence: true
