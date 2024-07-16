@@ -1,2 +1,10 @@
-<h1>Spots#show</h1>
+<h1>Spots#spot</h1>
 <p>Find me in app/views/spots/show.html.erb</p>
+
+<div class="show-container">
+  <h2>Spot Name: <%= @spot.name %></h2>
+  <p>Address: <%= @spot.address %></p>
+  <p>Description: <%= @spot.description %></p>
+  <p>Category: <%= @spot.category %></p>
+  <p>Rate: <%= @spot.daily_rate %></p>
+</div>

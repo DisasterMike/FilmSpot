@@ -3,6 +3,7 @@ class SpotsController < ApplicationController
   end
 
   def show
+    @spot = Spot.find(params[:id])
   end
 
   def new
@@ -11,9 +12,9 @@ class SpotsController < ApplicationController
 
   def create
     @spot = Spot.new(spots_params)
-    @user = User.find(params[:user_id])
-    @spot.user_id = @user
+    @spot.user = current_user
     @spot.save
+    redirect_to spot_path(@spot)
     raise
   end
 
