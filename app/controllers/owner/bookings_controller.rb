@@ -16,7 +16,7 @@ class Owner::BookingsController < ApplicationController
     # puts params[:status]
     if params[:status] == "accept"
       @booking.status = "accepted"
-    else params[:status] == "decline"
+    elsif params[:status] == "decline"
       @booking.status = "declined"
     end
     @booking.save
