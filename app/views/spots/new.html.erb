@@ -1,12 +1,14 @@
-<h1>Add Spot</h1>
-<div class="form-container">
-  <%= simple_form_for(@spot) do |t| %>
-    <%= t.input :name %>
-    <%= t.input :address %>
-    <%= t.input :description %>
-    <%= t.input :category %>
-    <%= t.input :daily_rate %>
-    <%= t.input :photo, as: :file %>
-    <%= t.submit class: "btn btn-primary" %>
-  <% end %>
+<div class="mt-5 mx-5 w-50 bg-white p-5">
+  <h1 class="mb-5">Add Spot</h1>
+  <div class="form-container">
+    <%= simple_form_for(@spot) do |t| %>
+      <%= t.input :name %>
+      <%= t.input :address %>
+      <%= t.input :description %>
+      <%= t.input :category %>
+      <%= t.input :daily_rate %>
+      <%= t.input :photo, as: :file %>
+      <%= t.submit class: "btn btn-primary" %>
+    <% end %>
+  </div>
 </div>
