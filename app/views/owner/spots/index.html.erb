@@ -1,12 +1,21 @@
-<h1>Owner::Spots#index</h1>
-<p>Find me in app/views/owner/spots/index.html.erb</p>
-<p>Owner: <%= @user.name %></p>
-<% @spots.each do |spot| %>
-  <div>
-    <h3><%= spot.name %></h3>
-    <p>Address: <%= spot.address %></p>
-    <p>Description: <%= spot.description %></p>
-    <p>Category: <%= spot.category %></p>
-    <p>Daily Rate: <%= spot.daily_rate %></p>
+<div class="container">
+  <h1 class="m-3"><%= @user.name %>'s Listed Properties</h1>
+  <hr>
+  <div class="spot-grid">
+    <% @spots.each do |spot| %>
+      <div class="spot-card">
+        <div class="spot-header">
+          <h4><%= spot.name %></h4>
+          <div>
+            <i class="fa-solid fa-location-dot"></i>
+            <%= spot.address %>
+          </div>
+        </div>
+        <div>
+          <%= link_to "Bookings", "#", class: "button-round-md" %>
+          <%= link_to "Edit", "#", class: "button-round-md" %>
+        </div>
+      </div>
+    <% end %>
   </div>
-<% end %>
+</div>
