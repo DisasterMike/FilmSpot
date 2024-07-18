@@ -16,7 +16,7 @@ class SpotsController < ApplicationController
     @spot.user = current_user
     @spot.save
     redirect_to spot_path(@spot)
-    raise
+    # raise
   end
 
   private
