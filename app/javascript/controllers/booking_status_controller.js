@@ -8,35 +8,43 @@ export default class extends Controller {
     // console.log("hello from the booking status controller");
   }
 
+  // All Button
   allClicked(){
-    this.#resetAllTargets(); // reset...
+    this.#resetAllButtonTargetsCSS(); // reset...
     this.allTarget.classList.remove("btn-dark"); // remove dark bg
     this.allTarget.classList.add("btn-warning"); // add warning bg
     this.#disableUnwantedCards("all", this.statusTargets); // display all cards
   }
 
+  // Pending Button
   pendingClicked(){
-    this.#resetAllTargets(); // reset...
+    this.#resetAllButtonTargetsCSS(); // reset...
     this.pendingTarget.classList.remove("btn-dark"); // remove dark bg
     this.pendingTarget.classList.add("btn-warning"); // add warning bg
     this.#disableUnwantedCards("pending", this.statusTargets);
   }
 
+  // Accepted Button
   acceptedClicked(){
-    this.#resetAllTargets(); // reset...
+    this.#resetAllButtonTargetsCSS(); // reset...
     this.acceptedTarget.classList.remove("btn-dark"); // remove dark bg
     this.acceptedTarget.classList.add("btn-warning"); // add warning bg
     this.#disableUnwantedCards("accepted", this.statusTargets);
   }
 
+  // Declined Button
   declinedClicked(){
-    this.#resetAllTargets(); // reset...
+    this.#resetAllButtonTargetsCSS(); // reset...
     this.declinedTarget.classList.remove("btn-dark"); // remove dark bg
     this.declinedTarget.classList.add("btn-warning"); // add warning bg
     this.#disableUnwantedCards("declined", this.statusTargets);
   }
 
-  #resetAllTargets(){
+  //// Private variables
+  ///
+  //
+
+  #resetAllButtonTargetsCSS(){
     let targetsArray = [this.allTarget, this.pendingTarget, this.acceptedTarget, this.declinedTarget]
     targetsArray.forEach(element => {
       // Remove both dark and warning if they have it, and reset all to have dark again
