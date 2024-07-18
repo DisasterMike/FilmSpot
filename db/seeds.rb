@@ -23,7 +23,7 @@ puts "Created 5 restaurant spots"
 # Create 10 bookings
 puts "Creating 10 bookings 30 days from now"
 10.times do
-booking_date = Date.today + 7
+booking_date = Date.today + rand(7..21)
 new_booking = Booking.new(booking_date: booking_date, user_id: 1, status: "pending")
 new_booking.spot = Spot.all.sample
 new_booking.save

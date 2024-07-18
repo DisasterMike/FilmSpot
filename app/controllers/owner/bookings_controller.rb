@@ -1,6 +1,9 @@
 class Owner::BookingsController < ApplicationController
   def index
-    @bookings = Booking.all
+    all_bookings = Booking.all
+    sorted_bookings_by_date = all_bookings.sort_by {|booking| booking.booking_date }
+    # p sorted_bookings
+    @bookings = sorted_bookings_by_date
   end
 
   def show

@@ -1,10 +1,31 @@
 <%# <h1>Owner::Bookings#index</h1>
 <p>Find me in app/views/owner/bookings/index.html.erb</p> %>
-<div class="container">
+<div  data-controller="booking-status" class="container">
   <h1>My Bookings</h1>
+  <div class="container toggle-lists">
+    <div class="d-flex justify-content-center">
+      <div class="border border-2 rounded-pill d-flex align-items-center">
+        <div class="box rounded-pill d-flex justify-content-center px-3 py-2" style="flex: 1;">
+          <button data-action="click->booking-status#allClicked" data-booking-status-target="all" class="btn btn-warning rounded-pill">All</button>
+        </div>
+        <div class="edge-start border-end border-2 h-50"></div>
+        <div class="box rounded-pill d-flex justify-content-center px-3 py-2" style="flex: 1;">
+          <button data-action="click->booking-status#pendingClicked" data-booking-status-target="pending" class="btn btn-dark rounded-pill">Pending</button>
+        </div>
+        <div class="edge-end border-start border-2 h-50"></div>
+        <div class="box rounded-pill d-flex justify-content-center px-3 py-2" style="flex: 1;">
+          <button data-action="click->booking-status#acceptedClicked" data-booking-status-target="accepted" class="btn btn-dark rounded-pill">Accepted</button>
+        </div>
+        <div class="edge-end border-start border-2 h-50"></div>
+        <div class="box rounded-pill d-flex justify-content-center px-3 py-2" style="flex: 1;">
+          <button data-action="click->booking-status#declinedClicked" data-booking-status-target="declined" class="btn btn-dark rounded-pill">Declined</button>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="row p-3">
     <% @bookings.each do |booking| %>
-      <div class="col-sm-6 col-lg-4 booking-item">
+      <div data-booking-status-target="status" class="col-sm-6 col-lg-4 booking-item">
         <div class="info m-3 p-3 border border-2 rounded-3">
           <% status_color = "text-success" if booking.status == "accepted" %>
           <% status_color = "text-danger" if booking.status == "declined" %>
