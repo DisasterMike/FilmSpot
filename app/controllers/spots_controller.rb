@@ -14,8 +14,11 @@ class SpotsController < ApplicationController
   def create
     @spot = Spot.new(spots_params)
     @spot.user = current_user
-    @spot.save
-    redirect_to spot_path(@spot)
+    if @spot.save
+      redirect_to spot_path(@spot)
+    else
+      render :new, status: :unprocessible_entity
+    end
     # raise
   end
 
