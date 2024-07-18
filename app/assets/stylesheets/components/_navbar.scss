@@ -10,3 +10,21 @@
 .navbar-lewagon .navbar-brand img {
   width: 40px;
 }
+
+#navbarSupportedContent {
+  padding-right: 15px;
+}
+
+.nav-item {
+  padding-right: 3px;
+  &:hover {
+    background-color: rgb(216, 213, 213);
+    border-radius: 50px;
+  }
+}
+
+.dropdown-item{
+  &:hover {
+    background-color: rgb(216, 213, 213);
+  }
+}
