@@ -18,6 +18,6 @@ Rails.application.routes.draw do
     get 'spots/index'
     get 'spots/show'
     resources :spots, only: [:index, :show]
-    resources :bookings, only: [:index, :show]
+    resources :bookings, only: [:index, :show, :edit, :update]
   end
 end

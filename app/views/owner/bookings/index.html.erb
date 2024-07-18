@@ -1,13 +1,29 @@
 <%# <h1>Owner::Bookings#index</h1>
 <p>Find me in app/views/owner/bookings/index.html.erb</p> %>
 <div class="container">
-  <div class="row p-3 gap-2">
+  <h1>My Bookings</h1>
+  <div class="row p-3">
     <% @bookings.each do |booking| %>
-      <div class="col-sm-6 col-lg-4 booking-item border border-2 rounded-3">
-        <h2><%= booking.spot.name %> scheduled on <%= booking.booking_date %></h2>
-        <h2>Booking status: <%= booking.status %></h2>
-        <h2>Viewer: <%= booking.user.name %></h2>
-        <%= link_to "More details", booking_path(booking), class: "btn btn-primary m-3" %>
+      <div class="col-sm-6 col-lg-4 booking-item">
+        <div class="info m-3 p-3 border border-2 rounded-3">
+          <% status_color = "text-success" if booking.status == "accepted" %>
+          <% status_color = "text-danger" if booking.status == "declined" %>
+          <%= image_tag("https://pbblogassets.s3.amazonaws.com/uploads/2016/07/Professional-Cinema-Camera.jpg", alt: "generic movie shooting image", width: 200) %>
+          <h2><strong><%= booking.spot.name %></strong></h2>
+          <h3><strong>Scheduled on:</strong> <%= booking.booking_date %></h3>
+          <h3><strong>Booking status:</strong> <span class="<%= status_color %>"><%= booking.status %></span></h3>
+          <h3><strong>Viewer:</strong> <%= booking.user.name %></h3>
+          <% if booking.status == "pending" %>
+            <div class="accept-buttons d-flex justify-content-around">
+              <%# link_to "Accept", owner_booking_path(booking), :method => :patch %>
+              <%= button_to("Accept", {controller: "bookings", action: "update", id: booking.id}, method: :patch, class: "btn btn-success rounded-pill", params: { status: "accept" } ) %>
+              <%= button_to("Decline", {controller: "bookings", action: "update", id: booking.id}, method: :patch, class: "btn btn-danger rounded-pill", params: { status: "decline" } ) %>
+            </div>
+          <% end %>
+          <div class="d-flex justify-content-center">
+            <%= link_to "More details", booking_path(booking), class: "btn btn-primary m-3 rounded-pill" %>
+          </div>
+        </div>
       </div>
     <% end %>
   </div>
