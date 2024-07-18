@@ -17,7 +17,7 @@ class SpotsController < ApplicationController
     if @spot.save
       redirect_to spot_path(@spot)
     else
-      render :new, status: :unprocessible_entity
+      render :new, status: :unprocessable_entity
     end
     # raise
   end
