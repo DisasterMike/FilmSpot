@@ -1,5 +1,9 @@
 import { Controller } from "@hotwired/stimulus"
 
+// Change these variales if decided to re-color the buttons
+const defaultBackgroundClass = "btn-dark";
+const selectedBackgroundClass = "btn-warning";
+
 // Connects to data-controller="booking-status"
 export default class extends Controller {
   static targets = [ "all", "pending", "accepted", "declined", "status" ]
@@ -11,32 +15,32 @@ export default class extends Controller {
   // All Button
   allClicked(){
     this.#resetAllButtonTargetsCSS(); // reset...
-    this.allTarget.classList.remove("btn-dark"); // remove dark bg
-    this.allTarget.classList.add("btn-warning"); // add warning bg
+    this.allTarget.classList.remove(defaultBackgroundClass); // remove dark bg
+    this.allTarget.classList.add(selectedBackgroundClass); // add warning bg
     this.#disableUnwantedCards("all", this.statusTargets); // display all cards
   }
 
   // Pending Button
   pendingClicked(){
     this.#resetAllButtonTargetsCSS(); // reset...
-    this.pendingTarget.classList.remove("btn-dark"); // remove dark bg
-    this.pendingTarget.classList.add("btn-warning"); // add warning bg
+    this.pendingTarget.classList.remove(defaultBackgroundClass); // remove dark bg
+    this.pendingTarget.classList.add(selectedBackgroundClass); // add warning bg
     this.#disableUnwantedCards("pending", this.statusTargets);
   }
 
   // Accepted Button
   acceptedClicked(){
     this.#resetAllButtonTargetsCSS(); // reset...
-    this.acceptedTarget.classList.remove("btn-dark"); // remove dark bg
-    this.acceptedTarget.classList.add("btn-warning"); // add warning bg
+    this.acceptedTarget.classList.remove(defaultBackgroundClass); // remove dark bg
+    this.acceptedTarget.classList.add(selectedBackgroundClass); // add warning bg
     this.#disableUnwantedCards("accepted", this.statusTargets);
   }
 
   // Declined Button
   declinedClicked(){
     this.#resetAllButtonTargetsCSS(); // reset...
-    this.declinedTarget.classList.remove("btn-dark"); // remove dark bg
-    this.declinedTarget.classList.add("btn-warning"); // add warning bg
+    this.declinedTarget.classList.remove(defaultBackgroundClass); // remove dark bg
+    this.declinedTarget.classList.add(selectedBackgroundClass); // add warning bg
     this.#disableUnwantedCards("declined", this.statusTargets);
   }
 
@@ -48,9 +52,9 @@ export default class extends Controller {
     let targetsArray = [this.allTarget, this.pendingTarget, this.acceptedTarget, this.declinedTarget]
     targetsArray.forEach(element => {
       // Remove both dark and warning if they have it, and reset all to have dark again
-      element.classList.remove("btn-dark");
-      element.classList.remove("btn-warning");
-      element.classList.add("btn-dark");
+      element.classList.remove(defaultBackgroundClass);
+      element.classList.remove(selectedBackgroundClass);
+      element.classList.add(defaultBackgroundClass);
     });
   }
 
