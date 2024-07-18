@@ -4,5 +4,6 @@ class Owner::BookingsController < ApplicationController
   end
 
   def show
+    @spot = Booking.find(params[:id])
   end
 end
