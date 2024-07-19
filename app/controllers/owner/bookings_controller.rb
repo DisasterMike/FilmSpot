@@ -1,12 +1,9 @@
 class Owner::BookingsController < ApplicationController
   def index
-    # all_bookings = Booking.all
-    all_bookings = current_user.bookings
-    sorted_bookings_by_date = all_bookings.sort_by { |booking| booking.booking_date }
-    # render json: sorted_bookings_by_date
+    all_bookings = all_spot_bookings
+    # sorted_bookings_by_date = all_bookings.sort_by { |booking| booking.booking_date }
+    sorted_bookings_by_date = all_bookings.sort_by(&:booking_date)
     @bookings = sorted_bookings_by_date
-    @bookings_by_name = all_bookings.sort_by { |booking| booking.spot.name }
-    p @bookings_by_name
   end
 
   def show
@@ -17,9 +14,7 @@ class Owner::BookingsController < ApplicationController
   end
 
   def update
-    # raise
     @booking = Booking.find(params[:id])
-    # puts params[:status]
     if params[:status] == "accept"
       @booking.status = "accepted"
     elsif params[:status] == "decline"
@@ -30,7 +25,20 @@ class Owner::BookingsController < ApplicationController
   end
 
   def all_bookings
-    bookings = current_user.bookings
+    bookings = all_spot_bookings
     render json: bookings
+  end
+
+  private
+
+  def all_spot_bookings
+    current_bookings = []
+    spots = current_user.spots
+    spots.each do |spot|
+      spot.bookings.each do |booking|
+        current_bookings << booking
+      end
+    end
+    current_bookings
   end
 end

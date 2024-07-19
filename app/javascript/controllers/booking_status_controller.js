@@ -5,22 +5,35 @@ const defaultBackgroundClass = "btn-dark";
 const selectedBackgroundClass = "btn-warning";
 
 export default class extends Controller {
-  static targets = [ "all", "pending", "accepted", "declined", "statusCard", "statusWord" ]
+  static targets = [ "all", "pending", "accepted", "declined", "statusCard", "statusWord", "bookingsRow" ]
 
   connect() {
     // console.log("hello from the booking status controller");
-    // let items = document.querySelector(".row");
-    // console.log(items);
-    // items.insertAdjacentHTML("beforeend", "<%= @bookings %>")
-    // fetch("http://localhost:3000/owner/bookings")
-    //   .then(response => response.json())
-    //   .then(results => console.log(results));
+  }
+
+  toggleFilterList(){
+    console.log("Filter list");
   }
 
   filterByName(){
     // do a fetch request into the database,
     // then remove all current cards
     // repopulate the cards with SORTED array of new cards from the database
+
+    this.statusCardTargets.forEach(card => {
+      // card.remove();
+    });
+
+    fetch("http://localhost:3000/owner/bookings/all")
+      .then(response => response.json())
+      .then(data => {
+        data.forEach(element => {
+          console.log(element);
+          // this.bookingsRowTarget.insertAdjacentHTML("beforeend",
+          //   "<h2>test</h2>"
+          // )
+        });
+      })
   }
 
   // All Button
