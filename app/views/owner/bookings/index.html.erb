@@ -1,5 +1,3 @@
-<%# <h1>Owner::Bookings#index</h1>
-<p>Find me in app/views/owner/bookings/index.html.erb</p> %>
 <div  data-controller="booking-status" class="container">
   <h1>My Bookings</h1>
   <div class="container toggle-lists">
@@ -23,16 +21,24 @@
       </div>
     </div>
   </div>
+  <div class="container filter-lists">
+    <div class="d-flex justify-content-center gap-3">
+      <p>Filter by: </p>
+      <div>
+        <p>date</p>
+      </div>
+    </div>
+  </div>
   <div class="row p-3">
     <% @bookings.each do |booking| %>
-      <div data-booking-status-target="status" class="col-sm-6 col-lg-4 booking-item">
+      <div data-booking-status-target="statusCard" class="col-sm-6 col-lg-4 booking-item">
         <div class="info m-3 p-3 border border-2 rounded-3">
           <% status_color = "text-success" if booking.status == "accepted" %>
           <% status_color = "text-danger" if booking.status == "declined" %>
           <%= image_tag("https://pbblogassets.s3.amazonaws.com/uploads/2016/07/Professional-Cinema-Camera.jpg", alt: "generic movie shooting image", width: 200) %>
-          <h2><strong><%= booking.spot.name %></strong></h2>
+          <h2><strong><%= booking.spot.name %> + <%= booking.id %></strong></h2>
           <h3><strong>Scheduled on:</strong> <%= booking.booking_date %></h3>
-          <h3><strong>Booking status:</strong> <span class="<%= status_color %>"><%= booking.status %></span></h3>
+          <h3><strong>Booking status:</strong> <span data-booking-status-target="statusWord" class="<%= status_color %>"><%= booking.status %></span></h3>
           <h3><strong>Viewer:</strong> <%= booking.user.name %></h3>
           <% if booking.status == "pending" %>
             <div class="accept-buttons d-flex justify-content-around">

@@ -1,9 +1,12 @@
 class Owner::BookingsController < ApplicationController
   def index
-    all_bookings = Booking.all
-    sorted_bookings_by_date = all_bookings.sort_by {|booking| booking.booking_date }
-    # p sorted_bookings
+    # all_bookings = Booking.all
+    all_bookings = current_user.bookings
+    sorted_bookings_by_date = all_bookings.sort_by { |booking| booking.booking_date }
+    # render json: sorted_bookings_by_date
     @bookings = sorted_bookings_by_date
+    @bookings_by_name = all_bookings.sort_by { |booking| booking.spot.name }
+    p @bookings_by_name
   end
 
   def show
@@ -24,5 +27,10 @@ class Owner::BookingsController < ApplicationController
     end
     @booking.save
     redirect_to owner_bookings_path
+  end
+
+  def all_bookings
+    bookings = current_user.bookings
+    render json: bookings
   end
 end
