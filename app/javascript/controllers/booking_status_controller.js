@@ -5,14 +5,26 @@ const defaultBackgroundClass = "btn-dark";
 const selectedBackgroundClass = "btn-warning";
 
 export default class extends Controller {
-  static targets = [ "all", "pending", "accepted", "declined", "statusCard", "statusWord", "bookingsRow" ]
+  static targets = [ "all", "pending", "accepted", "declined", "statusCard", "statusWord", "bookingsRow", "filterBox", "currentFilter" ]
 
   connect() {
     // console.log("hello from the booking status controller");
   }
 
-  toggleFilterList(){
-    console.log("Filter list");
+  enableFilterList(event){
+    // console.log("enable");
+    this.filterBoxTarget.classList.toggle("d-none");
+  }
+
+  disableFilterList(){
+    // console.log("disable");
+    this.filterBoxTarget.classList.add("d-none");
+  }
+
+  filterType(event){
+    // console.log(event.currentTarget.innerText);
+    this.currentFilterTarget.innerText = event.currentTarget.innerText
+    // TODO - change the cards order!
   }
 
   filterByName(){
