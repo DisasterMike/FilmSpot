@@ -1,0 +1,25 @@
+.spot-card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  padding: 1.6rem;
+  border-radius: 32px;
+  height: 288px;
+  margin: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+
+  // align-items: center;
+
+  h4 {
+    font-size: 16px;
+    font-weight: bolder;
+  }
+
+}
+
+.spot-header {
+  display: flex;
+  justify-content: space-between;
+}
