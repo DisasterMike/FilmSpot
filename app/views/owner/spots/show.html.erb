@@ -1,9 +1,13 @@
 <h1>Owner::Spots#show</h1>
 <p>Find me in app/views/owner/spots/show.html.erb</p>
 <div class="show-container">
+    <% if @spot.photo.attached?  %>
+      <%= cl_image_tag @spot.photo.key, height: 300, width: 400, crop: :fill %>
+    <% end %>
   <h2>Spot Name: <%= @spot.name %></h2>
   <p>Address: <%= @spot.address %></p>
   <p>Description: <%= @spot.description %></p>
   <p>Category: <%= @spot.category %></p>
   <p>Rate: <%= @spot.daily_rate %></p>
 </div>
+<h1>check</h1>
