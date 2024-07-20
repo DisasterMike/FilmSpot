@@ -9,7 +9,7 @@
     </div>
       <% if @spot.photo.attached?  %>
         <div class="image-container">
-          <%= cl_image_tag @spot.photo.key, crop: :fill, class: "spot-photo" %>
+          <%= cl_image_tag @spot.photo.key, crop: :fill, class: "spot-photo", alt: "#{@spot.name} image"%>
         </div>
       <% end %>
     <p>Address: <strong><%= @spot.address %></strong></p>
