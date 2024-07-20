@@ -1,18 +1,63 @@
-<%# <h1>Owner::Bookings#index</h1>
-<p>Find me in app/views/owner/bookings/index.html.erb</p> %>
-<div class="container">
-  <h1>My Bookings</h1>
-  <div class="row p-3">
-    <% @bookings.each do |booking| %>
-      <div class="col-sm-6 col-lg-4 booking-item">
-        <div class="info m-3 p-3 border border-2 rounded-3">
+<div data-action="click->booking-filter#disableFilterList"
+  data-controller="booking-status booking-filter"
+  data-booking-filter-bookings-date-value="<%= @bookings_by_date.to_json %>"
+  data-booking-filter-bookings-name-value="<%= @bookings_by_name.to_json %>"
+  data-booking-filter-bookings-viewer-value="<%= @bookings_by_viewer.to_json %>"
+  class="container">
+  <h1>Spot Bookings</h1>
+  <div class="container toggle-lists">
+    <div class="d-flex justify-content-center">
+      <div class="border border-2 rounded-pill d-flex align-items-center">
+        <div class="box rounded-pill d-flex justify-content-center px-3 py-2" style="flex: 1;">
+          <button data-action="click->booking-status#allClicked" data-booking-status-target="all" class="btn btn-warning rounded-pill">All</button>
+        </div>
+        <div class="edge-start border-end border-2 h-50"></div>
+        <div class="box rounded-pill d-flex justify-content-center px-3 py-2" style="flex: 1;">
+          <button data-action="click->booking-status#pendingClicked" data-booking-status-target="pending" class="btn btn-dark rounded-pill">Pending</button>
+        </div>
+        <div class="edge-end border-start border-2 h-50"></div>
+        <div class="box rounded-pill d-flex justify-content-center px-3 py-2" style="flex: 1;">
+          <button data-action="click->booking-status#acceptedClicked" data-booking-status-target="accepted" class="btn btn-dark rounded-pill">Accepted</button>
+        </div>
+        <div class="edge-end border-start border-2 h-50"></div>
+        <div class="box rounded-pill d-flex justify-content-center px-3 py-2" style="flex: 1;">
+          <button data-action="click->booking-status#declinedClicked" data-booking-status-target="declined" class="btn btn-dark rounded-pill">Declined</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container filter-lists">
+    <div class="d-flex justify-content-center gap-3 my-2">
+      <p>Filter by: </p>
+      <div style="position: relative">
+        <%# <p data-action="click->booking-filter#toggleFilterList" class="border-bottom border-2 border-warning">date</p> %>
+        <%# <a href="#" class="text-decoration-none text-dark border-bottom border-2 border-warning">Date</a> %>
+        <button data-booking-filter-target="currentFilter" data-action="click->booking-filter#enableFilterList:stop" class="border-bottom border-2 border-warning filter-button" style="background: unset; border: unset">Date</button>
+        <div data-booking-filter-target="filterBox" class="border border-2 rounded-4 p-3 bg-light d-none" style="position: absolute; top: 20px">
+          <p data-action="click->booking-filter#filterType" class="m-0 mb-1 text-end border-bottom">Date</p>
+          <p data-action="click->booking-filter#filterType" class="m-0 text-end">Spot</p>
+          <p data-action="click->booking-filter#filterType" class="m-0 mt-1 text-end border-top">Viewer</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%# Bookings Cards %>
+  <%# /// %>
+  <div data-booking-status-target="bookingsRow" class="row p-3">
+    <% @bookings_by_date.each do |booking| %>
+      <div data-booking-status-target="statusCard" class="col-sm-6 col-lg-4 booking-item">
+        <div class="info m-3 p-3 border border-2 rounded-3 bg-light">
+          <div class="d-flex gap-3">
+            <p><i class="fa-solid fa-location-pin"></i></p>
+            <p><%= booking.spot.address %></p>
+          </div>
           <% status_color = "text-success" if booking.status == "accepted" %>
           <% status_color = "text-danger" if booking.status == "declined" %>
           <%= image_tag("https://pbblogassets.s3.amazonaws.com/uploads/2016/07/Professional-Cinema-Camera.jpg", alt: "generic movie shooting image", width: 200) %>
           <h2><strong><%= booking.spot.name %></strong></h2>
-          <h3><strong>Scheduled on:</strong> <%= booking.booking_date %></h3>
-          <h3><strong>Booking status:</strong> <span class="<%= status_color %>"><%= booking.status %></span></h3>
-          <h3><strong>Viewer:</strong> <%= booking.user.name %></h3>
+          <h3><i class="fa-regular fa-calendar-days"></i> <%= booking.booking_date %></h3>
+          <h3><strong>Requested by:</strong> <%= booking.user.name %></h3>
+          <h3><strong>Booking status:</strong> <span data-booking-status-target="statusWord" class="<%= status_color %>"><%= booking.status %></span></h3>
           <% if booking.status == "pending" %>
             <div class="accept-buttons d-flex justify-content-around">
               <%# link_to "Accept", owner_booking_path(booking), :method => :patch %>

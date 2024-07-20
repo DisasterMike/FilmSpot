@@ -11,22 +11,24 @@
 Booking.destroy_all
 Spot.destroy_all
 
+filmers = User.all.select { |user| user.owner.nil? }
+# User.all.count > 1 ? filmers.sample.id : 1
 
 # Create 5 spots
 puts "Creating 5 restaurant spots"
 5.times do
-new_spot = Spot.new(name: Faker::Restaurant.name, address: Faker::Address.city, category: "restaurant", daily_rate: (500..1000).to_a.sample.to_f, description: Faker::Lorem.paragraph, user_id: 1)
-new_spot.save
+  new_spot = Spot.new(name: Faker::Restaurant.name, address: Faker::Address.city, category: "restaurant", daily_rate: (500..1000).to_a.sample.to_f, description: Faker::Lorem.paragraph, user_id: 1)
+  new_spot.save
 end
 puts "Created 5 restaurant spots"
 
 # Create 10 bookings
 puts "Creating 10 bookings 30 days from now"
 10.times do
-booking_date = Date.today + 7
-new_booking = Booking.new(booking_date: booking_date, user_id: 1, status: "pending")
-new_booking.spot = Spot.all.sample
-new_booking.save
+  booking_date = Date.today + rand(7..21)
+  new_booking = Booking.new(booking_date: booking_date, user_id: (filmers.any? ? filmers.sample.id : 1), status: "pending")
+  new_booking.spot = Spot.all.sample
+  new_booking.save
 end
 
 puts "Created 10 bookings 30 days from now"
