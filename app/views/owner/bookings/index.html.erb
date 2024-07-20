@@ -1,4 +1,9 @@
-<div data-action="click->booking-filter#disableFilterList" data-controller="booking-status booking-filter" class="container">
+<div data-action="click->booking-filter#disableFilterList"
+  data-controller="booking-status booking-filter"
+  data-booking-filter-bookings-date-value="<%= @bookings_by_date.to_json %>"
+  data-booking-filter-bookings-name-value="<%= @bookings_by_name.to_json %>"
+  data-booking-filter-bookings-viewer-value="<%= @bookings_by_viewer.to_json %>"
+  class="container">
   <h1>Spot Bookings</h1>
   <div class="container toggle-lists">
     <div class="d-flex justify-content-center">
@@ -32,7 +37,6 @@
           <p data-action="click->booking-filter#filterType" class="m-0 mb-1 text-end border-bottom">Date</p>
           <p data-action="click->booking-filter#filterType" class="m-0 text-end">Spot</p>
           <p data-action="click->booking-filter#filterType" class="m-0 mt-1 text-end border-top">Viewer</p>
-          <%# <p>Status</p> %>
         </div>
       </div>
     </div>
@@ -40,7 +44,7 @@
   <%# Bookings Cards %>
   <%# /// %>
   <div data-booking-status-target="bookingsRow" class="row p-3">
-    <% @bookings.each do |booking| %>
+    <% @bookings_by_date.each do |booking| %>
       <div data-booking-status-target="statusCard" class="col-sm-6 col-lg-4 booking-item">
         <div class="info m-3 p-3 border border-2 rounded-3 bg-light">
           <div class="d-flex gap-3">
