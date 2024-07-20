@@ -16,5 +16,5 @@ class Spot < ApplicationRecord
 
   # category validations
   validates :category, presence: true
-  validates :category, inclusion: %w[park restaurant house other] # TODO: maybe change this later?
+  # validates :category, inclusion: %w[park restaurant house other]
 end
