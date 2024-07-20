@@ -1,0 +1,32 @@
+<% @bookings_by_date.each do |booking| %>
+  <div data-booking-status-target="statusCard" class="col-sm-6 col-lg-4 booking-item">
+    <div class="info m-3 border border-2 rounded-5 bg-light b-card" style="overflow: hidden;">
+      <div class="b-back p-3">
+        <div class="d-flex justify-content-between">
+          <div class="d-flex gap-3">
+            <p><i class="fa-solid fa-location-pin"></i></p>
+            <p><%= booking.spot.address %></p>
+          </div>
+          <%= link_to booking_path(booking) do %>
+            <i class="fa-solid fa-circle-info text-primary" style="font-size: 1.5rem;"></i>
+          <% end %>
+        </div>
+        <% status_color = "text-success" if booking.status == "accepted" %>
+        <% status_color = "text-danger" if booking.status == "declined" %>
+        <%# image_tag("https://pbblogassets.s3.amazonaws.com/uploads/2016/07/Professional-Cinema-Camera.jpg", alt: "generic movie shooting image", width: 200) %>
+        <h3><strong><%= booking.spot.name %></strong></h3>
+        <p><i class="fa-regular fa-calendar-days"></i> <span><%= booking.booking_date %></span></p>
+        <p class="b-main-text"><strong>Requested by:</strong> <%= booking.user.name %></p>
+        <p class="b-main-text"><strong>Booking status:</strong> <span data-booking-status-target="statusWord" class="<%= status_color %>"><%= booking.status %></span></p>
+      </div>
+      <% if booking.status == "pending" %>
+        <div class="accept-buttons d-flex justify-content-around p-3">
+          <%# link_to "Accept", owner_booking_path(booking), :method => :patch %>
+          <%= button_to("Accept", {controller: "bookings", action: "update", id: booking.id}, method: :patch, class: "btn btn-success rounded-pill text-light", params: { status: "accept" } ) %>
+          <div class="border-start border-2"></div>
+          <%= button_to("Decline", {controller: "bookings", action: "update", id: booking.id}, method: :patch, class: "btn btn-danger rounded-pill text-light", params: { status: "decline" } ) %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,19 @@
+<div class="container filter-lists">
+  <div class="d-flex justify-content-center gap-3 my-2">
+    <p>Filter by: </p>
+    <div style="position: relative">
+      <button data-booking-filter-target="currentFilter" data-action="click->booking-filter#enableFilterList:stop" class="border-bottom border-2 border-warning filter-button" style="background: unset; border: unset">Date</button>
+      <div data-booking-filter-target="filterBox" class="border border-2 rounded-4 p-3 bg-light d-none" style="position: absolute; top: 20px">
+        <button style="background: unset; border: unset">
+          <p data-action="click->booking-filter#filterType" class="m-0 mb-1 border-bottom b-dropdown-item">Date</p>
+        </button>
+        <button style="background: unset; border: unset">
+          <p data-action="click->booking-filter#filterType" class="m-0 text-end b-dropdown-item">Spot</p>
+        </button>
+        <button style="background: unset; border: unset">
+          <p data-action="click->booking-filter#filterType" class="m-0 mt-1 text-end border-top b-dropdown-item">Viewer</p>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
