@@ -5,7 +5,7 @@ const defaultBackgroundClass = "btn-dark";
 const selectedBackgroundClass = "btn-warning";
 
 export default class extends Controller {
-  static targets = [ "all", "pending", "accepted", "declined", "statusCard", "statusWord", "bookingsRow" ]
+  static targets = [ "all", "pending", "accepted", "declined", "statusCard", "statusWord" ]
 
   connect() {
     // console.log("hello from the booking status controller");
