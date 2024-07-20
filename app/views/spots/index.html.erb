@@ -2,7 +2,7 @@
 </div>
 <div class="spot-grid">
   <% @spots.each do |spot| %>
-    <div class="spot-card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= spot.photo.attached? ? cl_image_path(list.photo.key) : "japan_restaurant.jpg"%>)">
+    <div class="spot-card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= spot.photo.attached? ? cl_image_path(list.photo.key) : image_path("japan_restaurant.jpg") %>)">
       <div class="spot-header">
         <h4><%= spot.name %></h4>
         <div>
