@@ -1,5 +1,5 @@
 <div data-action="click->booking-filter#disableFilterList" data-controller="booking-status booking-filter" class="container">
-  <h1>My Bookings</h1>
+  <h1>Spot Bookings</h1>
   <div class="container toggle-lists">
     <div class="d-flex justify-content-center">
       <div class="border border-2 rounded-pill d-flex align-items-center">
@@ -37,17 +37,23 @@
       </div>
     </div>
   </div>
+  <%# Bookings Cards %>
+  <%# /// %>
   <div data-booking-status-target="bookingsRow" class="row p-3">
     <% @bookings.each do |booking| %>
       <div data-booking-status-target="statusCard" class="col-sm-6 col-lg-4 booking-item">
-        <div class="info m-3 p-3 border border-2 rounded-3">
+        <div class="info m-3 p-3 border border-2 rounded-3 bg-light">
+          <div class="d-flex gap-3">
+            <p><i class="fa-solid fa-location-pin"></i></p>
+            <p><%= booking.spot.address %></p>
+          </div>
           <% status_color = "text-success" if booking.status == "accepted" %>
           <% status_color = "text-danger" if booking.status == "declined" %>
           <%= image_tag("https://pbblogassets.s3.amazonaws.com/uploads/2016/07/Professional-Cinema-Camera.jpg", alt: "generic movie shooting image", width: 200) %>
           <h2><strong><%= booking.spot.name %></strong></h2>
-          <h3><strong>Scheduled on:</strong> <%= booking.booking_date %></h3>
+          <h3><i class="fa-regular fa-calendar-days"></i> <%= booking.booking_date %></h3>
+          <h3><strong>Requested by:</strong> <%= booking.user.name %></h3>
           <h3><strong>Booking status:</strong> <span data-booking-status-target="statusWord" class="<%= status_color %>"><%= booking.status %></span></h3>
-          <h3><strong>Viewer:</strong> <%= booking.user.name %></h3>
           <% if booking.status == "pending" %>
             <div class="accept-buttons d-flex justify-content-around">
               <%# link_to "Accept", owner_booking_path(booking), :method => :patch %>

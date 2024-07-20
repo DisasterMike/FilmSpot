@@ -21,27 +21,32 @@ export default class extends Controller {
   filterType(event){
     // console.log(event.currentTarget.innerText);
     this.currentFilterTarget.innerText = event.currentTarget.innerText
-    // TODO - change the cards order!
+    console.log(this.#filterBookings());
+    let bookings = this.#filterBookings();
+    console.log(typeof(bookings));
+    // console.log(bookings);
+    // TODO - sort the bookings depending on event.currentTarget.innerText
+    // TODO - change the cards order! -
+    // - either 1) change current card info, 2) remove cards and add new ones
   }
 
-  filterByName(){
-    // do a fetch request into the database,
-    // then remove all current cards
-    // repopulate the cards with SORTED array of new cards from the database
+  //// Private variables
+  ///
+  //
 
-    this.statusCardTargets.forEach(card => {
-      // card.remove();
-    });
+  #filterBookings(){
+    let bookingsArray = [];
 
-    fetch("http://localhost:3000/owner/bookings/all")
+    const url = `${window.location.href}/all`;
+    // console.log(url);
+    fetch(url)
       .then(response => response.json())
       .then(data => {
         data.forEach(element => {
-          console.log(element);
-          // this.bookingsRowTarget.insertAdjacentHTML("beforeend",
-          //   "<h2>test</h2>"
-          // )
+          bookingsArray.push(element);
         });
       })
+
+      return bookingsArray;
   }
 }
