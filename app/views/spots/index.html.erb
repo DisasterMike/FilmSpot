@@ -1,10 +1,20 @@
-<h1>Spots#index</h1>
-<p>Find me in app/views/spots/index.html.erb</p>
-<div class="container">
-  <div class="row">
-    <% @spots.each do  |spot| %>
-      <div>
-        <p><%= spot.name %></p>
+<div class="container mt-3">
+  <div class="spot-grid">
+    <% @spots.each do |spot| %>
+      <div class="spot-card" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.3)), url(<%= spot.photo.attached? ? cl_image_path(spot.photo.key) : image_path("japan_restaurant.jpg") %>)">
+        <div class="spot-header">
+          <h4><%= spot.name %></h4>
+          <div>
+            <i class="fa-solid fa-bookmark"></i>
+          </div>
+        </div>
+        <div class="spot-footer">
+          <div><img src="https://kitt.lewagon.com/placeholder/users/ssaunier" alt="" class="avatar"></div>
+          <div>
+            <%= link_to "Details", spot_path(spot), class: "button-round-md" %>
+          </div>
+          <div><%= spot.daily_rate %> / Day</div>
+        </div>
       </div>
     <% end %>
   </div>

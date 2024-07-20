@@ -3,7 +3,7 @@
   <hr>
   <div class="spot-grid">
     <% @spots.each do |spot| %>
-      <div class="spot-card">
+      <div class="spot-card"style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.3)), url(<%= spot.photo.attached? ? cl_image_path(spot.photo.key) : image_path("japan_restaurant.jpg") %>)">
         <div class="spot-header">
           <h4><%= spot.name %></h4>
           <div>
@@ -12,8 +12,7 @@
           </div>
         </div>
         <div>
-          <%= link_to "Bookings", "#", class: "button-round-md" %>
-          <%= link_to "Edit", "#", class: "button-round-md" %>
+          <%= link_to "Bookings", owner_bookings_path, class: "button-round-md" %>
         </div>
       </div>
     <% end %>
