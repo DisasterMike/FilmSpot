@@ -11,8 +11,10 @@
             <%= spot.address %>
           </div>
         </div>
-        <div>
-          <%= link_to "Bookings", owner_bookings_path, class: "button-round-md" %>
+        <div class="spot-footer">
+          <%= link_to "View", spot_path(spot), class: "spot-footer-item spot-footer-item-left" %>
+          <%= link_to "Bookings", owner_bookings_path, class: "button-round-md spot-footer-item" %>
+          <div class="spot-footer-item"><%= spot.daily_rate %> / Day</div>
         </div>
       </div>
     <% end %>

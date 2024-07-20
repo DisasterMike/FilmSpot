@@ -21,6 +21,11 @@
     font-weight: bolder;
   }
 
+  a {
+    text-decoration: none;
+    color: #FFFFFF;
+  }
+
 }
 
 .spot-header {
@@ -29,7 +34,16 @@
 }
 
 .spot-footer {
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.spot-footer-item {
+  min-width: 6em;
+}
+
+.spot-footer-item-left {
+  text-align: start;
 }
