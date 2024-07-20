@@ -21,6 +21,11 @@
     font-weight: bolder;
   }
 
+  a {
+    text-decoration: none;
+    color: #FFFFFF;
+  }
+
 }
 
 .spot-header {
@@ -29,6 +34,7 @@
 }
 
 .spot-footer {
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
