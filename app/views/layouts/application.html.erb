@@ -7,10 +7,12 @@
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <%= favicon_link_tag 'filmspot-favicon.ico' %>
   </head>
   <body>
-    <%= render "components/navbar" %>
-    <%= render "components/flashes" %>
-    <%= yield %>
+    <%# render "components/navbar" %>
+    <%# render "components/flashes" %>
+    <%# yield %>
+    <%= render "layouts/general_layout" %>
   </body>
 </html>

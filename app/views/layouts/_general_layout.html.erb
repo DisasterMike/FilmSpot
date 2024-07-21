@@ -1,0 +1,12 @@
+<%= render "components/navbar" %>
+<div class="d-flex">
+  <div>
+    <div class="side-nav bg-white d-flex flex-column align-items-center" style="width: 75px; height: 100vh; position: sticky; top: 0;">
+      <%= image_tag "filmspot_logo.jpg", style: "width: 50px" %>
+    </div>
+  </div>
+  <div class="container-fluid p-0">
+    <%= yield %>
+  </div>
+</div>
+</div>

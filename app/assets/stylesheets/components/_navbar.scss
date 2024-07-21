@@ -28,3 +28,15 @@
     background-color: $pastel-gray;
   }
 }
+
+@media (max-width: 768px){
+  .side-nav{
+    display: none !important;
+  }
+}
+
+@media (min-width: 768px){
+  .navbar-lewagon{
+    display: none !important;
+  }
+}

@@ -1,2 +1,71 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<%# <h1>Pages#home</h1>
+<p>Find me in app/views/pages/home.html.erb</p> %>
+<div class="row m-0" style="height: 500px">
+  <div class="col-12 col-lg-7 bg-dark">
+    <div class="banner">
+      <h1>FilmSpot</h1>
+    </div>
+  </div>
+  <div class="col-12 col-lg-5">
+  </div>
+</div>
+<div class="row m-0">
+  <div class="col-12 p-0">
+    <div class="bg-warning p-3">
+      <div class="container">
+        <div>
+          <h2 class="text-light border-start border-3 ps-3">Recently Added Spots</h2>
+        </div>
+        <div class="row">
+          <% last_spots = @spots[-3..-1] %>
+          <% last_spots.each do |spot| %>
+            <div class="col-4">
+              <div class="spot-card" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.3)), url(<%= spot.photo.attached? ? cl_image_path(spot.photo.key) : image_path("japan_restaurant.jpg") %>)">
+                <div class="spot-header">
+                  <h4><%= spot.name %></h4>
+                  <div>
+                    <i class="fa-solid fa-bookmark"></i>
+                  </div>
+                </div>
+                <div class="spot-footer">
+                  <div><img src="<%= spot.user.photo.attached ? cl_image_path(spot.user.photo.key) : image_path("user-default.jpg") %>" alt="" class="avatar"></div>
+                  <div>
+                    <%= link_to "Details", spot_path(spot), class: "button-round-md" %>
+                  </div>
+                  <div><%= spot.daily_rate %> / Day</div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <form>
+        <div class="search d-flex align-items-center bg-light rounded-pill p-2 m-3 border border-2" style="width: max-content">
+          <i class="fa-solid fa-magnifying-glass bg-warning rounded-circle text-light p-2"></i>
+          <input class="ms-3" type="search" placeholder="search" style="outline: none; border: none; background: transparent">
+        </div>
+      </form>
+      <div class="spot-grid">
+        <% @spots.each do |spot| %>
+          <div class="spot-card" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.3)), url(<%= spot.photo.attached? ? cl_image_path(spot.photo.key) : image_path("japan_restaurant.jpg") %>)">
+            <div class="spot-header">
+              <h4><%= spot.name %></h4>
+              <div>
+                <i class="fa-solid fa-bookmark"></i>
+              </div>
+            </div>
+            <div class="spot-footer">
+              <div><img src="<%= spot.user.photo.attached ? cl_image_path(spot.user.photo.key) : image_path("user-default.jpg") %>" alt="" class="avatar"></div>
+              <div>
+                <%= link_to "Details", spot_path(spot), class: "button-round-md" %>
+              </div>
+              <div><%= spot.daily_rate %> / Day</div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
