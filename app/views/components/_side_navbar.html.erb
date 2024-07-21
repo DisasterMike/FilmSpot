@@ -3,7 +3,7 @@
   <%= link_to root_path, class: "navbar-brand" do %>
     <%= image_tag "filmspot_logo.jpg", style: "width: 45px", class: "my-3" %>
   <% end %>
-  <div class="f-icons d-flex flex-column justify-content-around flex-grow-1 py-3">
+  <div class="f-icons d-flex flex-column gap-5 flex-grow-1 py-3">
     <% if user_signed_in? %>
       <%= link_to root_path, class: "nav-link" do %>
         <div data-action="mouseover->nav-icons#popUp:stop" class="popUp" style="position: relative;">
