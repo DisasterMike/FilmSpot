@@ -1,15 +1,30 @@
-<div class="side-nav bg-white d-flex flex-column align-items-center justify-content-between gap-3" style="width: 65px; height: 100vh; position: sticky; top: 0;">
+<div data-controller="nav-icons" data-action="mouseover->nav-icons#home" class="side-nav bg-white d-flex flex-column align-items-center justify-content-between gap-3" style="width: 65px; height: 100vh; position: sticky; top: 0;">
   <%# image_tag "filmspot_logo.jpg", style: "width: 50px", class: "my-3" %>
   <%= link_to root_path, class: "navbar-brand" do %>
     <%= image_tag "filmspot_logo.jpg", style: "width: 45px", class: "my-3" %>
   <% end %>
   <div class="f-icons d-flex flex-column justify-content-around flex-grow-1 py-3">
     <% if user_signed_in? %>
-      <%# <i class="fa-solid fa-house" style="font-size: 1.4rem;"></i> %>
-      <i class="fa-solid fa-book" style="font-size: 1.4rem;"></i>
-      <i class="fa-solid fa-map-location" style="font-size: 1.4rem;"></i>
-      <i class="fa-solid fa-magnifying-glass-location" style="font-size: 1.4rem;"></i>
-      <i class="fa-solid fa-pen-to-square" style="font-size: 1.4rem;"></i>
+      <%= link_to root_path, class: "nav-link" do %>
+        <div style="position: relative;">
+          <i data-action="mouseover->nav-icons#home:stop" class="fa-solid fa-house home" style="font-size: 1.4rem;"></i>
+          <p data-nav-icons-target="home" class="bg-white text-dark rounded-3 py-2 px-3 fw-bold" style="position: absolute; bottom: -25px; left: 40px; transition: transform 0.3s; transform: scale(0)">Home</p>
+        </div>
+      <% end %>
+      <%= link_to bookings_path, class: "nav-link" do %>
+        <i class="fa-solid fa-book" style="font-size: 1.4rem;"></i>
+      <% end %>
+      <% if current_user.owner == true %>
+        <%= link_to owner_spots_path, class: "nav-link" do %>
+          <i class="fa-solid fa-map-location" style="font-size: 1.4rem;"></i>
+        <% end %>
+        <%= link_to owner_bookings_path, class: "nav-link" do %>
+          <i class="fa-solid fa-magnifying-glass-location" style="font-size: 1.4rem;"></i>
+        <% end %>
+        <%= link_to new_spot_path, class: "nav-link" do %>
+          <i class="fa-solid fa-pen-to-square" style="font-size: 1.4rem;"></i>
+        <% end %>
+      <% end %>
     <% end %>
   </div>
   <div class="f-avatar my-3">
@@ -17,7 +32,7 @@
       <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <%= image_tag "user-default", class: "avatar", alt: "dropdown menu" %>
       </a>
-      <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+      <div class="dropdown-menu dropdown-menu-end rounded-3" aria-labelledby="navbarDropdown">
         <%= link_to destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" do %>
           <p class="p-0 m-0">Log out <i class="fa-solid fa-right-to-bracket"></i></p>
         <% end %>
@@ -27,7 +42,7 @@
       <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <%= image_tag "user-default", class: "avatar", alt: "dropdown menu" %>
       </a>
-      <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+      <div class="dropdown-menu dropdown-menu-end rounded-3" aria-labelledby="navbarDropdown">
         <%= link_to "Login", new_user_session_path, class: "dropdown-item" %>
       </div>
     <% end %>
