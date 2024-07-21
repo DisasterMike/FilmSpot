@@ -29,6 +29,25 @@
   }
 }
 
+.side-nav{
+  width: 65px;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+
+  .nav-icon{
+    font-size: 1.4rem;
+  }
+
+  .nav-pop-up{
+    position: absolute;
+    bottom: -10px;
+    left: 40px;
+    transition: transform 0.3s;
+    transform: scale(0)
+  }
+}
+
 @media (max-width: 768px){
   .side-nav{
     display: none !important;
