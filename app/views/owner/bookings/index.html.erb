@@ -11,6 +11,8 @@
   <%# Bookings Cards %>
   <%# /// %>
   <div data-booking-filter-target="bookingsRow" class="row p-3 m-3 b-background-box">
-    <%= render "components/bookings_card" %>
+    <% @bookings_by_date.each do |booking| %>
+      <%= render "components/bookings_card", booking: booking %>
+    <% end %>
   </div>
 </div>
