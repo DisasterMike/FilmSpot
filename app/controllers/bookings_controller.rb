@@ -1,4 +1,5 @@
 class BookingsController < ApplicationController
+  before_action :set_booking, only: [:show]
   before_action :set_spot, only: [:new, :create]
   def index
   end
@@ -24,6 +25,10 @@ class BookingsController < ApplicationController
   end
 
   private
+  def set_booking
+    @booking = Booking.find(params[:id])
+  end
+
   def set_spot
     @spot = Spot.find(params[:spot_id])
   end

@@ -1,2 +1,17 @@
-<h1>Bookings#show</h1>
-<p>Find me in app/views/bookings/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col">
+    </div>
+    <div class="col">
+      <h1><%= @booking.spot.name %></h1>
+      <i class="fa-solid fa-location-dot" style="color: #e67e23;"></i>
+      <%= @booking.spot.address %>
+      <i class="fa-solid fa-money-bill" style="color: #e67e23;"></i>
+      <p>
+        <%= @booking.spot.daily_rate %> / Day
+      </p>
+      <i class="fa-regular fa-calendar" style="color: #e67e23;"></i>
+      <%= @booking.booking_date %>
+    </div>
+  </div>
+</div>
