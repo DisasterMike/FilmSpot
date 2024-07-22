@@ -5,6 +5,10 @@ class SpotsController < ApplicationController
 
   def show
     @spot = Spot.find(params[:id])
+    @booking = Booking.new
+    @user = current_user
+    @booking.spot_id = @spot.id
+    @booking.user = current_user
   end
 
   def new

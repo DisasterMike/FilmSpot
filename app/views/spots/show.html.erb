@@ -17,3 +17,11 @@
     <p>Daily Rate: <strong><%= @spot.daily_rate %></strong></p>
   </div>
 </div>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <%= @booking.spot.name %>
+      <%= render partial: "bookings/form", locals: { spot: @spot, booking: @booking } %>
+    </div>
+  </div>
+</div>

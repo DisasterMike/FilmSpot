@@ -12,9 +12,10 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
   resources :spots, only: [:index, :show, :new, :create] do
+    resources :bookings, only: [:new, :create]
   end
 
-  resources :bookings, only: [:index, :show, :new, :create]
+  resources :bookings, only: [:index, :show]
 
   namespace :owner do
     get 'spots/index'
