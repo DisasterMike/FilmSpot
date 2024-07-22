@@ -7,4 +7,5 @@ class User < ApplicationRecord
   has_many :spots
   has_many :bookmarks
   has_many :bookings
+  has_one_attached :photo
 end

@@ -5,6 +5,7 @@ class Owner::BookingsController < ApplicationController
     @bookings_by_date = all_bookings.sort_by(&:booking_date)
     @bookings_by_name = all_bookings.sort_by { |booking| booking.spot.name }
     @bookings_by_viewer = all_bookings.sort_by { |booking| booking.user.name }
+    # if param present
   end
 
   def show

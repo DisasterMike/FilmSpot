@@ -8,10 +8,12 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <%= javascript_importmap_tags %>
+    <%= favicon_link_tag 'filmspot-favicon.ico' %>
   </head>
   <body>
-    <%= render "components/navbar" %>
+    <%# render "components/navbar" %>
     <%= render "components/flashes" %>
-    <%= yield %>
+    <%# yield %>
+    <%= render "layouts/general_layout" %>
   </body>
 </html>
