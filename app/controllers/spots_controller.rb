@@ -1,6 +1,11 @@
 class SpotsController < ApplicationController
   def index
-    @spots = Spot.all
+    if params[:query].present?
+      @spots = Spot.search_by_name_address_category(params[:query])
+    else
+      @spots = Spot.all
+    end
+    @last_spots = Spot.all.last(3)
   end
 
   def show

@@ -1,4 +1,12 @@
+include PgSearch::Model
 class Spot < ApplicationRecord
+
+  pg_search_scope :search_by_name_address_category,
+  against: [ :name, :address, :category ],
+  using: {
+    tsearch: { prefix: true } # <-- now `superman batm` will return something!
+  }
+
   has_one_attached :photo
   belongs_to :user
   has_many :bookings, dependent: :destroy
