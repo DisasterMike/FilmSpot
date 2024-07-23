@@ -10,7 +10,7 @@
   <%= render "components/bookings_toolbar" %>
   <%= render "components/bookings_filter" %>
   <%# <div data-booking-filter-target="bookingsRow" class="row p-3 m-3 b-background-box"> %>
-  <div data-booking-filter-target="bookingsRow" class="row p-3 m-3 b-background-box">
+  <div data-booking-filter-target="bookingsRow" class="row p-3 m-3 b-background-filmer-box">
     <% @bookings_by_date.each do |booking| %>
       <%= render "components/filmer_bookings_card", booking: booking %>
     <% end %>
