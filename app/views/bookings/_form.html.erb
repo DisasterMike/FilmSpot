@@ -1,0 +1,13 @@
+<div class="input-group m-3">
+  <%= simple_form_for [@spot, @booking] do |f| %>
+    <div class="input-group">
+      <%= f.input :booking_date,
+                  class: "form-control",
+                  label: false,
+                  placeholder: "Choose Dates",
+                  as: :string,
+                  input_html: { data: { controller: "datepicker" } }%>
+      <%= f.submit "Book", class: "btn btn-warning text-center m-0" %>
+    </div>
+  <% end %>
+</div>

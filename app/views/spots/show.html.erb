@@ -4,7 +4,6 @@
   <% else %>
     <p>No Picture attached</p>
   <% end %>
-
   <div class="spot-details">
     <% if @spot.bookings.empty? %>
       <p class="text-dark">• No Requests</p>
@@ -15,29 +14,21 @@
     <% else %>
       <p class="text-warning">• Pending</p>
     <% end %>
-
-      <h1><%= @spot.daily_rate  %></h1>
-
-      <h1><%= @spot.name %></h1>
-
-      <h3 class= "details">Spot Details</h3>
-
-      <button class="accordion" data-controller="accordion" data-action="click->accordion#toggle"><i class="fa-solid fa-list"></i>  Category</button>
-
-      <div class="panel" data-accordion-target="panel">
-        <p><%= @spot.category %></p>
-      </div>
-
-      <button class="accordion" data-controller="accordion" data-action="click->accordion#toggle"><i class="fa-solid fa-address-book"></i>  Address</button>
-
-      <div class="panel" data-accordion-target="panel">
-        <p><%= @spot.address %></p>
-      </div>
-
-      <button class="accordion" data-controller="accordion" data-action="click->accordion#toggle"><i class="fa-solid fa-house"></i>  Property Description</button>
-
-      <div class="panel" data-accordion-target="panel">
-        <p><%= @spot.description %></p>
-      </div>
+    <h1><%= @spot.daily_rate  %></h1>
+    <h1><%= @spot.name %></h1>
+    <h3 class= "details">Spot Details</h3>
+    <button class="accordion" data-controller="accordion" data-action="click->accordion#toggle"><i class="fa-solid fa-list"></i>  Category</button>
+    <div class="panel" data-accordion-target="panel">
+      <p><%= @spot.category %></p>
+    </div>
+    <button class="accordion" data-controller="accordion" data-action="click->accordion#toggle"><i class="fa-solid fa-address-book"></i>  Address</button>
+    <div class="panel" data-accordion-target="panel">
+      <p><%= @spot.address %></p>
+    </div>
+    <button class="accordion" data-controller="accordion" data-action="click->accordion#toggle"><i class="fa-solid fa-house"></i>  Property Description</button>
+    <div class="panel" data-accordion-target="panel">
+      <p><%= @spot.description %></p>
+    </div>
+    <%= render partial: "bookings/form", locals: { spot: @spot, booking: @booking } %>
   </div>
 </div>
