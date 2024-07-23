@@ -11,17 +11,10 @@
         <%= cl_image_tag @spot.photo.key, crop: :fill, class: "spot-photo" %>
       </div>
     <% end %>
+    <%= render partial: "bookings/form", locals: { spot: @spot, booking: @booking } %>
     <p>Address: <strong><%= @spot.address %></strong></p>
     <p>Description: <strong><%= @spot.description %></strong></p>
     <p>Category: <strong><%= @spot.category %></strong></p>
     <p>Daily Rate: <strong><%= @spot.daily_rate %></strong></p>
-  </div>
-</div>
-<div class="container">
-  <div class="row">
-    <div class="col-12">
-      <%= @booking.spot.name %>
-      <%= render partial: "bookings/form", locals: { spot: @spot, booking: @booking } %>
-    </div>
   </div>
 </div>

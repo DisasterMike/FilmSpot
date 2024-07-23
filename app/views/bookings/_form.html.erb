@@ -1,12 +1,13 @@
-<%= simple_form_for [@spot, @booking] do |f| %>
-  <%= f.error_notification %>
-  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-  <div class="form-inputs">
-    <%= f.input :booking_date,
-                as: :string,
-                input_html: { data: { controller: "datepicker" } }%>
-  </div>
-  <div class="form-actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+<div class="input-group m-3">
+  <%= simple_form_for [@spot, @booking] do |f| %>
+    <div class="input-group">
+      <%= f.input :booking_date,
+                  class: "form-control",
+                  label: false,
+                  placeholder: "Choose Dates",
+                  as: :string,
+                  input_html: { data: { controller: "datepicker" } }%>
+      <%= f.submit "Book", class: "btn btn-warning text-center m-0" %>
+    </div>
+  <% end %>
+</div>
