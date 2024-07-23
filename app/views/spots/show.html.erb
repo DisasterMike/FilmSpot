@@ -1,20 +1,43 @@
-
 <div class="parent-container">
-  <div class="show-container">
-    <div class="spot-page">
-      <h1>Spot Page</h1>
-    </div>
-    <div class="spot-name">
-      <h2><strong><%= @spot.name %></strong></h2>
-    </div>
-      <% if @spot.photo.attached?  %>
-        <div class="image-container">
-          <%= cl_image_tag @spot.photo.key, crop: :fill, class: "spot-photo" %>
-        </div>
-      <% end %>
-    <p>Address: <strong><%= @spot.address %></strong></p>
-    <p>Description: <strong><%= @spot.description %></strong></p>
-    <p>Category: <strong><%= @spot.category %></strong></p>
-    <p>Daily Rate: <strong><%= @spot.daily_rate %></strong></p>
+  <% if @spot.photo.key %>
+    <%= cl_image_tag @spot.photo.key, width: 800, height: 550,  crop: :fill, class: "spot-photo", alt: "#{@spot.name} image"%>
+  <% else %>
+    <p>No Picture attached</p>
+  <% end %>
+
+  <div class="spot-details">
+    <% if @spot.bookings.empty? %>
+      <p class="text-dark">• No Requests</p>
+    <% elsif @spot.bookings == "accepted" %>
+      <p class="text-primary">• Accepted</p>
+    <% elsif @spot.bookings == "declined" %>
+      <p class="text-danger">• Declined</p>
+    <% else %>
+      <p class="text-warning">• Pending</p>
+    <% end %>
+
+      <h1><%= @spot.daily_rate  %></h1>
+
+      <h1><%= @spot.name %></h1>
+
+      <h3 class= "details">Spot Details</h3>
+
+      <button class="accordion" data-controller="accordion" data-action="click->accordion#toggle"><i class="fa-solid fa-list"></i>  Category</button>
+
+      <div class="panel" data-accordion-target="panel">
+        <p><%= @spot.category %></p>
+      </div>
+
+      <button class="accordion" data-controller="accordion" data-action="click->accordion#toggle"><i class="fa-solid fa-address-book"></i>  Address</button>
+
+      <div class="panel" data-accordion-target="panel">
+        <p><%= @spot.address %></p>
+      </div>
+
+      <button class="accordion" data-controller="accordion" data-action="click->accordion#toggle"><i class="fa-solid fa-house"></i>  Property Description</button>
+
+      <div class="panel" data-accordion-target="panel">
+        <p><%= @spot.description %></p>
+      </div>
   </div>
 </div>
