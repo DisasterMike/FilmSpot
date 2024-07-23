@@ -1,0 +1,11 @@
+<%= form_with url: spots_path, method: :get, class: "d-flex" do %>
+  <%= text_field_tag :query,
+      params[:query],
+      class: "form-control",
+      placeholder: "search",
+      style: "outline: none; border: none; background: transparent"
+  %>
+  <%= button_tag(type: 'submit', class: 'border-0', style: "outline: none; border: none; background: transparent") do %>
+    <i class="fa-solid fa-magnifying-glass bg-warning rounded-circle text-light p-2"></i>
+  <% end %>
+<% end %>

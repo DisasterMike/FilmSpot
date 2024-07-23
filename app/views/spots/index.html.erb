@@ -8,7 +8,6 @@
     <div class="container">
       <h2 class="text-light border-start border-3 border-light ps-3">Recently Added Spots</h2>
       <div class="row">
-        <%# last_spots = @spots.last(3) %>
         <% @last_spots.each do |spot| %>
           <div class="col-4">
             <%= render "components/spot_card", spot: spot %>
@@ -20,19 +19,7 @@
   <div class="container p-3">
     <form>
       <div class="search d-flex align-items-center bg-light rounded-pill p-3 m-3 border border-2" style="width: max-content">
-
-        <%# <input class="ms-3" type="search" placeholder="search" style="outline: none; border: none; background: transparent"> %>
-        <%= form_with url: spots_path, method: :get, class: "d-flex" do %>
-          <%= text_field_tag :query,
-              params[:query],
-              class: "form-control",
-              placeholder: "search",
-              style: "outline: none; border: none; background: transparent"
-          %>
-          <%= button_tag(type: 'submit', class: 'border-0', style: "outline: none; border: none; background: transparent") do %>
-            <i class="fa-solid fa-magnifying-glass bg-warning rounded-circle text-light p-2"></i>
-          <% end %>
-        <% end %>
+        <%= render "components/search_bar" %>
       </div>
     </form>
     <h2 class="text-dark border-start border-3 border-dark ps-3">All Spots</h2>
