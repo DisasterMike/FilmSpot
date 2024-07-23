@@ -1,46 +1,15 @@
 <%# <h1>Pages#home</h1>
 <p>Find me in app/views/pages/home.html.erb</p> %>
-<div class="row m-0">
-  <div class="col-12 col-lg-7 p-0 bg-dark">
-    <div class="home-banner d-flex flex-column justify-content-end" style="padding: 200px 0 100px 0;">
-      <div class="d-flex align-items-end bg-white me-3" style="box-shadow: inset -20px 7px 13px 14px rgba(0, 0, 0, 0.2); border-radius: 0 10px 10px 0;">
-        <%= image_tag "filmspot_logo_PNG.png", style: "width: 135px;" %>
-        <h1 style="font-size: 5rem">Film<span class="text-warning">Spot</span></h1>
-      </div>
-      <h3 class="text-light px-3">A place for <span><strong>content creators</strong></span> to find spots to film in.</h3>
-    </div>
-  </div>
-  <div class="col-12 col-lg-5 bg-dark d-flex justify-content-center align-items-center">
-    <div class="p-3 my-3 text-warning fs-5 border border-2 border-warning">
-      <p><span style="font-size: 3rem;">"</span>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-        Eum rerum earum eligendi, saepe nostrum non tempora quae. Sunt aliquam earum,
-        repellat laudantium, corporis ea debitis perferendis, totam autem numquam quaerat.<span style="font-size: 3rem;">"</span></p>
-    </div>
-  </div>
-</div>
-<div class="for-who-container">
-  <div class="container p-3">
-    <h2 class="text-dark border-start border-3 border-dark ps-3">We're here for you!</h2>
-    <div class="row text-center">
-      <div class="col-4">
-        <h2>Youtubers</h2>
-      </div>
-      <div class="col-4">
-        <h2>Film Students</h2>
-      </div>
-      <div class="col-4">
-        <h2>Producers</h2>
-      </div>
-    </div>
-  </div>
-</div>
+<% if !params[:query].present? %>
+  <%= render "components/hero" %>
+<% end %>
 <div class="spots-info-container">
   <div class="bg-warning p-3">
     <div class="container">
       <h2 class="text-light border-start border-3 border-light ps-3">Recently Added Spots</h2>
       <div class="row">
-        <% last_spots = @spots[-3..-1] %>
-        <% last_spots.each do |spot| %>
+        <%# last_spots = @spots.last(3) %>
+        <% @last_spots.each do |spot| %>
           <div class="col-4">
             <%= render "components/spot_card", spot: spot %>
           </div>
@@ -50,9 +19,20 @@
   </div>
   <div class="container p-3">
     <form>
-      <div class="search d-flex align-items-center bg-light rounded-pill p-2 m-3 border border-2" style="width: max-content">
-        <i class="fa-solid fa-magnifying-glass bg-warning rounded-circle text-light p-2"></i>
-        <input class="ms-3" type="search" placeholder="search" style="outline: none; border: none; background: transparent">
+      <div class="search d-flex align-items-center bg-light rounded-pill p-3 m-3 border border-2" style="width: max-content">
+
+        <%# <input class="ms-3" type="search" placeholder="search" style="outline: none; border: none; background: transparent"> %>
+        <%= form_with url: spots_path, method: :get, class: "d-flex" do %>
+          <%= text_field_tag :query,
+              params[:query],
+              class: "form-control",
+              placeholder: "search",
+              style: "outline: none; border: none; background: transparent"
+          %>
+          <%= button_tag(type: 'submit', class: 'border-0', style: "outline: none; border: none; background: transparent") do %>
+            <i class="fa-solid fa-magnifying-glass bg-warning rounded-circle text-light p-2"></i>
+          <% end %>
+        <% end %>
       </div>
     </form>
     <h2 class="text-dark border-start border-3 border-dark ps-3">All Spots</h2>
