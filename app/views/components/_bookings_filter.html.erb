@@ -2,17 +2,17 @@
   <div class="d-flex justify-content-center align-items-center gap-3 my-2">
     <p>Filter by: </p>
     <div style="position: relative; bottom: 6px;">
-      <button data-booking-filter-target="currentFilter" data-action="click->booking-filter#enableFilterList:stop" class="border-bottom border-2 border-warning filter-button" style="background: unset; border: unset">Date</button>
+      <button data-action="click->booking-filter#enableFilterList:stop" class="border-bottom border-2 border-warning filter-button" style="background: unset; border: unset"><%= @filter %></button>
       <div data-booking-filter-target="filterBox" class="border border-2 rounded-4 p-3 bg-light d-none" style="position: absolute; top: 20px">
-        <button style="background: unset; border: unset">
-          <p data-action="click->booking-filter#filterType" class="m-0 mb-1 border-bottom b-dropdown-item">Date</p>
-        </button>
-        <button style="background: unset; border: unset">
-          <p data-action="click->booking-filter#filterType" class="m-0 text-end b-dropdown-item">Spot</p>
-        </button>
-        <button style="background: unset; border: unset">
-          <p data-action="click->booking-filter#filterType" class="m-0 mt-1 text-end border-top b-dropdown-item">Viewer</p>
-        </button>
+        <div class="b-dropdown-item b-border-bottom b-box-style">
+          <%= button_to("Date", {controller: "bookings", action: "index"}, method: :get, class: "date-filter", params: { query: "date" } ) %>
+        </div>
+        <div class="b-dropdown-item b-border-bottom b-box-style">
+          <%= button_to("Spot", {controller: "bookings", action: "index"}, method: :get, class: "b-dropdown-item spot-filter", params: { query: "spot" } ) %>
+        </div>
+        <div class="b-dropdown-item b-box-style">
+          <%= button_to("Viewer", {controller: "bookings", action: "index"}, method: :get, class: "b-dropdown-item viewer-filter", params: { query: "viewer" } ) %>
+        </div>
       </div>
     </div>
   </div>

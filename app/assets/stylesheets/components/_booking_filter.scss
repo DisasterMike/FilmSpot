@@ -1,3 +1,32 @@
+
+.date-filter{
+  background: none;
+  border: none;
+  padding: 2px 0;
+}
+
+.spot-filter{
+  background: none;
+  border: none;
+  padding: 2px 0;
+}
+
+.viewer-filter{
+  background: none;
+  border: none;
+  padding: 2px 0;
+}
+
+.b-box-style{
+  width: 100%;
+  text-align: center;
+  padding: 3px;
+}
+
+.b-border-bottom{
+  border-bottom: 1px solid lightgray;
+}
+
 .b-dropdown-item{
   &:hover {
     background-color: $pastel-gray;

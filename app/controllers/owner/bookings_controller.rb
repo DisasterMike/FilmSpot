@@ -1,10 +1,21 @@
 class Owner::BookingsController < ApplicationController
   def index
     all_bookings = all_spot_bookings
-    @bookings_by_date = all_bookings.sort_by(&:booking_date)
-    @bookings_by_name = all_bookings.sort_by { |booking| booking.spot.name }
-    @bookings_by_viewer = all_bookings.sort_by { |booking| booking.user.name }
-    # if param present
+    if params[:query].present?
+      if params[:query] == "date"
+        @bookings = all_bookings.sort_by(&:booking_date)
+        @filter = "Date"
+      elsif params[:query] == "spot"
+        @bookings = all_bookings.sort_by { |booking| booking.spot.name }
+        @filter = "Spot"
+      elsif params[:query] == "viewer"
+        @bookings = all_bookings.sort_by { |booking| booking.user.name }
+        @filter = "Viewer"
+      end
+    else
+      @bookings = all_bookings.sort_by(&:booking_date)
+      @filter = "Date"
+    end
   end
 
   def show
