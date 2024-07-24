@@ -28,9 +28,9 @@
     <% if booking.status == "pending" %>
       <div class="accept-buttons d-flex justify-content-around p-3">
         <%# link_to "Accept", owner_booking_path(booking), :method => :patch %>
-        <%= button_to("Accept", {controller: "bookings", action: "update", id: booking.id}, method: :patch, class: "btn btn-success rounded-pill text-light", params: { status: "accept" } ) %>
+        <%= button_to("Accept", {controller: "bookings", action: "update", id: booking.id}, method: :patch, class: "btn btn-success rounded-pill text-light", params: { status: "accept", query: @query } ) %>
         <div class="border-start border-2"></div>
-        <%= button_to("Decline", {controller: "bookings", action: "update", id: booking.id}, method: :patch, class: "btn btn-danger rounded-pill text-light", params: { status: "decline" } ) %>
+        <%= button_to("Decline", {controller: "bookings", action: "update", id: booking.id}, method: :patch, class: "btn btn-danger rounded-pill text-light", params: { status: "decline", query: @query } ) %>
       </div>
     <% end %>
   </div>

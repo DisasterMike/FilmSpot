@@ -16,6 +16,7 @@ class Owner::BookingsController < ApplicationController
       @bookings = all_bookings.sort_by(&:booking_date)
       @filter = "Date"
     end
+    @query = params[:query]
   end
 
   def show
@@ -34,13 +35,8 @@ class Owner::BookingsController < ApplicationController
       @booking.status = "declined"
     end
     @booking.save
-    redirect_to owner_bookings_path
+    redirect_to owner_bookings_path(query: params[:query])
   end
-
-  # def all_bookings
-  #   bookings = all_spot_bookings
-  #   render json: bookings
-  # end
 
   private
 
