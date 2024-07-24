@@ -9,44 +9,96 @@ export default class extends Controller {
 
   connect() {
     // console.log("hello from the booking status controller");
+
+    // get the current URL
+    let thisPage = new URL(window.location.href);
+    // check the params and set the button to what it was before
+    if(thisPage.searchParams.get("t") === "all"){
+      console.log("found all");
+      this.#setAllStatus();
+    }
+    if(thisPage.searchParams.get("t") === "pending"){
+      console.log("found pending");
+      this.#setPendingStatus();
+    }
+    if(thisPage.searchParams.get("t") === "accepted"){
+      console.log("found accepted");
+      this.#setAcceptedStatus();
+    }
+    if(thisPage.searchParams.get("t") === "declined"){
+      console.log("found declined");
+      this.#setDeclinedStatus();
+    }
   }
 
   // All Button
   allClicked(){
-    this.#resetAllButtonTargetsCSS(); // reset...
-    this.allTarget.classList.remove(defaultBackgroundClass); // remove default bg
-    this.allTarget.classList.add(selectedBackgroundClass); // add highlighted bg
-    this.#disableUnwantedCards("all", this.statusCardTargets); // display all cards
+    // get the current URL
+    let thisPage = new URL(window.location.href);
+    // set the url to have a param t=all
+    thisPage.searchParams.set('t', "all");
+    // reload the page with the new params
+    window.location.search = thisPage.searchParams.toString()
   }
 
   // Pending Button
   pendingClicked(){
-    this.#resetAllButtonTargetsCSS(); // reset...
-    this.pendingTarget.classList.remove(defaultBackgroundClass); // remove default bg
-    this.pendingTarget.classList.add(selectedBackgroundClass); // add highlighted bg
-    this.#disableUnwantedCards("pending", this.statusCardTargets);
+    // get the current URL
+    let thisPage = new URL(window.location.href);
+    // set the url to have a param t=pending
+    thisPage.searchParams.set('t', "pending");
+    // reload the page with the new params
+    window.location.search = thisPage.searchParams.toString()
   }
 
   // Accepted Button
   acceptedClicked(){
-    this.#resetAllButtonTargetsCSS(); // reset...
-    this.acceptedTarget.classList.remove(defaultBackgroundClass); // remove default bg
-    this.acceptedTarget.classList.add(selectedBackgroundClass); // add highlighted bg
-    this.#disableUnwantedCards("accepted", this.statusCardTargets);
+    // get the current URL
+    let thisPage = new URL(window.location.href);
+    // set the url to have a param t=accepted
+    thisPage.searchParams.set('t', "accepted");
+    // reload the page with the new params
+    window.location.search = thisPage.searchParams.toString()
   }
 
   // Declined Button
   declinedClicked(){
-    this.#resetAllButtonTargetsCSS(); // reset...
-    this.declinedTarget.classList.remove(defaultBackgroundClass); // remove default bg
-    this.declinedTarget.classList.add(selectedBackgroundClass); // add highlighted bg
-    this.#disableUnwantedCards("declined", this.statusCardTargets);
+    // get the current URL
+    let thisPage = new URL(window.location.href);
+    // set the url to have a param t=declined
+    thisPage.searchParams.set('t', "declined");
+    // reload the page with the new params
+    window.location.search = thisPage.searchParams.toString()
   }
 
   //// Private variables
   ///
   //
 
+  #setAllStatus(){
+    this.#resetAllButtonTargetsCSS(); // reset...
+    this.allTarget.classList.remove(defaultBackgroundClass); // remove default bg
+    this.allTarget.classList.add(selectedBackgroundClass); // add highlighted bg
+    this.#disableUnwantedCards("all", this.statusCardTargets); // display all cards
+  }
+  #setPendingStatus(){
+    this.#resetAllButtonTargetsCSS(); // reset...
+    this.pendingTarget.classList.remove(defaultBackgroundClass); // remove default bg
+    this.pendingTarget.classList.add(selectedBackgroundClass); // add highlighted bg
+    this.#disableUnwantedCards("pending", this.statusCardTargets);
+  }
+  #setAcceptedStatus(){
+    this.#resetAllButtonTargetsCSS(); // reset...
+    this.acceptedTarget.classList.remove(defaultBackgroundClass); // remove default bg
+    this.acceptedTarget.classList.add(selectedBackgroundClass); // add highlighted bg
+    this.#disableUnwantedCards("accepted", this.statusCardTargets);
+  }
+  #setDeclinedStatus(){
+    this.#resetAllButtonTargetsCSS(); // reset...
+    this.declinedTarget.classList.remove(defaultBackgroundClass); // remove default bg
+    this.declinedTarget.classList.add(selectedBackgroundClass); // add highlighted bg
+    this.#disableUnwantedCards("declined", this.statusCardTargets);
+  }
   #resetAllButtonTargetsCSS(){
     let targetsArray = [this.allTarget, this.pendingTarget, this.acceptedTarget, this.declinedTarget]
     targetsArray.forEach(element => {
