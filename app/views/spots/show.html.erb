@@ -36,6 +36,10 @@
     <div class="panel" data-accordion-target="panel">
       <p><%= @spot.description %></p>
     </div>
-    <%= render partial: "bookings/form", locals: { spot: @spot, booking: @booking } %>
+    <% if @spot.user_id == current_user.id %>
+      <%= link_to "Bookings", owner_bookings_path, class: "button-round-md mt-3" %>
+    <% else %>
+      <%= render partial: "bookings/form", locals: { spot: @spot, booking: @booking } %>
+    <% end %>
   </div>
 </div>
