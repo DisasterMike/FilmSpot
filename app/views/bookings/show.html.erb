@@ -1,32 +1,61 @@
-<div class="container m-3">
-  <div class="row">
+<div class="container mt-3">
+  <div class="row booking-details">
     <div class="col-6">
-      <h1><%= link_to @booking.spot.name, spot_path(@booking.spot), class: "text-dark text-decoration-none" %></h1>
-      <i class="fa-solid fa-location-dot" style="color: #e67e23;"></i>
-      <%= @booking.spot.address %>
-      <hr>
-      <i class="fa-regular fa-calendar" style="color: #e67e23;"></i>
-      <span> <%= @booking.booking_date %></span>
-      <i class="fa-solid fa-clock" style="color: #e67e23;"></i>
-      <%= @booking.status.capitalize %>
-      <h3 class="mt-3">Overview</h3>
-      <p><%= @booking.spot.description %></p>
-      <div class="d-flex">
-        <p>Listed By <%= @booking.spot.user.name %></p>
-        <%= image_tag "user-default.jpg", class: "avatar", alt: "Anonymous user avatar" %>
-      </div>
-      <p>
-        <i class="fa-solid fa-money-bill" style="color: #e67e23;"></i>
-        <strong><%= @booking.spot.daily_rate %></strong> / Day
-      </p>
-    </div>
-    <% if @booking.status != "declined" && @booking.status != "canceled" %>
       <div>
-        <% if @user.owner == false %>
-          <%= link_to "Edit", "#", class: "btn btn-warning" %>
-        <% end %>
-        <%= button_to("Cancel", {controller: "bookings", action: "update", id: @booking.id}, method: :patch, data: {turbo_confirm: 'Are you sure?'}, class: "btn btn-warning", params: { status: "canceled" } ) %>
+        <h2 class="mb-3">Booking Status</h2>
       </div>
-    <% end %>
+      <div>
+        <% if @booking.status == "pending" %>
+          <i class="fa-solid fa-clock" id="status-icon" style="color: #ffab5c;"></i>
+        <% elsif @booking.status == "accepted"%>
+          <i class="fa-solid fa-circle-check" id="status-icon" style="color: #63E6BE;"></i>
+        <% else %>
+          <i class="fa-solid fa-circle-xmark" id="status-icon" style="color: #f44343;"></i>
+        <% end %>
+        <p class="m-3"><%= @booking.status.capitalize %></p>
+      </div>
+      <hr>
+      <div class="booking-info-area">
+        <div class="booking-section-card bg-dark">
+          <h3><%= @booking.booking_date.strftime("%B %Y") %><h3/>
+            <h4 id="date-day"><%= @booking.booking_date.strftime("%e") %></h4>
+          </div>
+          <hr>
+          <div class="">
+            <h3>Property Owner</h3>
+            <i class="fa-solid fa-circle-user"></i>
+            <p><%=@booking.spot.user.name%></p>
+          </div>
+          <div class="">
+            <h3>Amount Due</h3>
+            <i class="fa-solid fa-yen-sign"></i>
+            <span><%= @booking.spot.daily_rate %></span>
+          </div>
+          <div class="button-area m-3">
+            <% if @booking.status != "declined" && @booking.status != "canceled" %>
+              <div>
+                <% if current_user.owner == false || current_user.owner.nil? %>
+                  <%= link_to "Edit", edit_booking_path(@booking), class: "button-round-md" %>
+                <% end %>
+                <%= button_to("Cancel", {controller: "bookings", action: "update", id: @booking.id}, method: :patch, data: {turbo_confirm: 'Are you sure?'}, class: "btn btn-warning", params: { status: "canceled" } ) %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="col-6">
+        <div id="spot-section">
+          <h5><strong><%= @booking.spot.name %></strong></h5>
+          <div class="mb-3">
+            <i class="fa-solid fa-location-dot"></i>
+            <span><%= @booking.spot.address %></span>
+          </div>
+          <% if @booking.spot.photo.attached? %>
+            <%= cl_image_tag @booking.spot.photo.key %>
+          <% else %>
+            <%= image_tag 'japan_restaurant.jpg' %>
+          <% end %>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
