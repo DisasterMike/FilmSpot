@@ -1,5 +1,5 @@
 class BookingsController < ApplicationController
-  before_action :set_booking, only: [:show]
+  before_action :set_booking, only: [:show, :edit, :update]
   before_action :set_spot, only: [:new, :create]
   def index
     bookings = current_user.bookings
@@ -25,6 +25,18 @@ class BookingsController < ApplicationController
       redirect_to booking_path(@booking)
     else
       render :new, status: :unprocessable_entity
+    end
+  end
+
+  def edit
+
+  end
+
+  def update
+    if @booking.update(booking_params)
+      redirect_to booking_path(@booking)
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 

@@ -29,6 +29,10 @@
     <div class="panel" data-accordion-target="panel">
       <p><%= @spot.description %></p>
     </div>
-    <%= render partial: "bookings/form", locals: { spot: @spot, booking: @booking } %>
+    <% if @spot.user_id == current_user.id %>
+      <p>This is your property</p>
+    <% else %>
+      <%= render partial: "bookings/form", locals: { spot: @spot, booking: @booking } %>
+    <% end %>
   </div>
 </div>

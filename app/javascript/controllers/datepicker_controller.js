@@ -10,8 +10,4 @@ export default class extends Controller {
       dateFormat: "Y-m-d",
     })
   }
-
-  requestBooking () {
-
-  }
 }
