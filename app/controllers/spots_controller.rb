@@ -8,6 +8,7 @@ class SpotsController < ApplicationController
       @spots = Spot.all
     end
     @last_spots = Spot.all.last(3)
+    @bookings = all_spot_bookings.select { |booking| booking.status == "pending" }
   end
 
   def show
@@ -43,6 +44,17 @@ class SpotsController < ApplicationController
         booking.destroy
       end
     end
+  end
+
+  def all_spot_bookings
+    current_bookings = []
+    spots = current_user.spots
+    spots.each do |spot|
+      spot.bookings.each do |booking|
+        current_bookings << booking
+      end
+    end
+    current_bookings
   end
 
   def spots_params

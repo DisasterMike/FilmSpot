@@ -46,6 +46,17 @@
     transition: transform 0.3s;
     transform: scale(0)
   }
+
+  .booking-notifications{
+    background-color: $warning;
+    position: absolute;
+    border-radius: 50%;
+    padding: 1px 8px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    bottom: 10px;
+    left: 33px;
+  }
 }
 
 @media (max-width: 768px){
