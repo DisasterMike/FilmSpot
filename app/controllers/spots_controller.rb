@@ -16,9 +16,16 @@ class SpotsController < ApplicationController
     @user = current_user
     @booking.spot_id = @spot.id
     @booking.user = current_user
+
     # Filter Coordinate
-    @marker = {lat: @spot.latitude, lng: @spot.longitude}
-    # console
+    @marker = {
+      lat: @spot.latitude,
+      lng: @spot.longitude,
+      info_window_html: render_to_string(
+        partial: "info_window",
+        locals: { spot: @spot }
+      )
+    }
   end
 
   def new

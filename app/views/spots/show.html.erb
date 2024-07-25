@@ -4,6 +4,7 @@
   <% else %>
     <p>No Picture attached</p>
   <% end %>
+
   <% upcoming_booking = @spot.bookings.find {|booking| booking.user == @user } %>
   <div class="spot-details">
     <% if upcoming_booking.nil? %>
@@ -21,22 +22,30 @@
         <%= link_to "• Pending", booking_path(upcoming_booking), class: "text-warning text-decoration-none" %>
       </div>
     <% end %>
+
     <h2><%= @spot.daily_rate  %></h2>
+
     <h1><%= @spot.name %></h1>
+
     <h3 class= "details">Spot Details</h3>
+
     <button class="accordion" data-controller="accordion" data-action="click->accordion#toggle"><i class="fa-solid fa-list"></i>  Category</button>
     <div class="panel" data-accordion-target="panel">
       <p><%= @spot.category %></p>
     </div>
+
     <button class="accordion" data-controller="accordion" data-action="click->accordion#toggle"><i class="fa-solid fa-address-book"></i>  Address</button>
     <div class="panel" data-accordion-target="panel">
       <p><%= @spot.address %></p>
     </div>
+
     <button class="accordion" data-controller="accordion" data-action="click->accordion#toggle"><i class="fa-solid fa-house"></i>  Property Description</button>
     <div class="panel" data-accordion-target="panel">
       <p><%= @spot.description %></p>
     </div>
+
     <%= render partial: "bookings/form", locals: { spot: @spot, booking: @booking } %>
+
   </div>
 </div>
 
