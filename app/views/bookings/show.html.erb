@@ -1,7 +1,7 @@
 <div class="container m-3">
   <div class="row">
     <div class="col-6">
-      <h1><%= @booking.spot.name %></h1>
+      <h1><%= link_to @booking.spot.name, spot_path(@booking.spot), class: "text-dark text-decoration-none" %></h1>
       <i class="fa-solid fa-location-dot" style="color: #e67e23;"></i>
       <%= @booking.spot.address %>
       <hr>

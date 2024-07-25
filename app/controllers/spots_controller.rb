@@ -1,5 +1,7 @@
 class SpotsController < ApplicationController
   def index
+    destroy_overdue_bookings unless current_user.nil?
+
     if params[:query].present?
       @spots = Spot.search_by_name_address_category(params[:query])
     else
@@ -32,6 +34,16 @@ class SpotsController < ApplicationController
   end
 
   private
+
+  def destroy_overdue_bookings
+    all_bookings = current_user.bookings
+    all_bookings.each do |booking|
+      if booking.booking_date < Date.today # + numberOfDaysRequested?
+        # destroy the booking if it's already passed
+        booking.destroy
+      end
+    end
+  end
 
   def spots_params
     params.require(:spot).permit(:name, :address, :description, :category, :daily_rate, :photo)

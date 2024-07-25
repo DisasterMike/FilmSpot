@@ -1,17 +1,14 @@
 <%# <h1>Bookings#index</h1>
 <p>Find me in app/views/bookings/index.html.erb</p> %>
 <div data-action="click->booking-filter#disableFilterList"
-  data-controller="booking-status booking-filter"
-  data-booking-filter-bookings-date-value="<%= @bookings_by_date.to_json %>"
-  data-booking-filter-bookings-name-value="<%= @bookings_by_name.to_json %>"
-  data-booking-filter-bookings-viewer-value="<%= @bookings_by_viewer.to_json %>" class="container">
+  data-controller="booking-status booking-filter" class="container">
   <h1 class="m-3">My Bookings</h1>
   <hr>
   <%= render "components/bookings_toolbar" %>
   <%= render "components/bookings_filter" %>
   <%# <div data-booking-filter-target="bookingsRow" class="row p-3 m-3 b-background-box"> %>
-  <div data-booking-filter-target="bookingsRow" class="row p-3 m-3 b-background-box">
-    <% @bookings_by_date.each do |booking| %>
+  <div class="row p-3 m-3 b-background-filmer-box">
+    <% @bookings.each do |booking| %>
       <%= render "components/filmer_bookings_card", booking: booking %>
     <% end %>
   </div>
