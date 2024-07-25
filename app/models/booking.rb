@@ -7,5 +7,5 @@ class Booking < ApplicationRecord
 
   # status validations
   validates :status, presence: true
-  validates :status, inclusion: %w[accepted pending declined] # TODO: maybe change this later?
+  validates :status, inclusion: %w[accepted pending declined canceled]
 end

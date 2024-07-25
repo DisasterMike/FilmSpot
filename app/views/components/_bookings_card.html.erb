@@ -12,8 +12,10 @@
       </div>
       <% status_color = "text-success" if booking.status == "accepted" %>
       <% status_color = "text-danger" if booking.status == "declined" %>
+      <% status_color = "text-info" if booking.status == "canceled" %>
       <% status_border_color = "border-success" if booking.status == "accepted" %>
       <% status_border_color = "border-danger" if booking.status == "declined" %>
+      <% status_border_color = "border-info" if booking.status == "canceled" %>
       <%# image_tag("https://pbblogassets.s3.amazonaws.com/uploads/2016/07/Professional-Cinema-Camera.jpg", alt: "generic movie shooting image", width: 200) %>
       <h3><strong><%= booking.spot.name %></strong></h3>
       <p><i class="fa-regular fa-calendar-days"></i> <span><%= booking.booking_date %></span></p>

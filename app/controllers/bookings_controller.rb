@@ -21,6 +21,7 @@ class BookingsController < ApplicationController
   end
 
   def show
+    @user = current_user
   end
 
   def new
@@ -40,7 +41,19 @@ class BookingsController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    # raise
+    @booking = Booking.find(params[:id])
+    @booking.status = "canceled" if params[:status] == "canceled"
+    @booking.save
+    redirect_to booking_path(@booking)
+  end
+
   private
+
   def set_booking
     @booking = Booking.find(params[:id])
   end
