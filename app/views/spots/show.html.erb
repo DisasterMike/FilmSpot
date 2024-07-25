@@ -4,17 +4,24 @@
   <% else %>
     <p>No Picture attached</p>
   <% end %>
+  <% upcoming_booking = @spot.bookings.find {|booking| booking.user == @user } %>
   <div class="spot-details">
-    <% if @spot.bookings.empty? %>
+    <% if upcoming_booking.nil? %>
       <p class="text-dark">• No Requests</p>
-    <% elsif @spot.bookings == "accepted" %>
-      <p class="text-primary">• Accepted</p>
-    <% elsif @spot.bookings == "declined" %>
-      <p class="text-danger">• Declined</p>
+    <% elsif upcoming_booking.status == "accepted" %>
+      <div class="mb-3">
+        <%= link_to "• Accepted", booking_path(upcoming_booking), class: "text-success text-decoration-none" %>
+      </div>
+    <% elsif upcoming_booking.status == "declined" %>
+      <div class="mb-3">
+        <%= link_to "• Declined", booking_path(upcoming_booking), class: "text-danger text-decoration-none" %>
+      </div>
     <% else %>
-      <p class="text-warning">• Pending</p>
+      <div class="mb-3">
+        <%= link_to "• Pending", booking_path(upcoming_booking), class: "text-warning text-decoration-none" %>
+      </div>
     <% end %>
-    <h1><%= @spot.daily_rate  %></h1>
+    <h2><%= @spot.daily_rate  %></h2>
     <h1><%= @spot.name %></h1>
     <h3 class= "details">Spot Details</h3>
     <button class="accordion" data-controller="accordion" data-action="click->accordion#toggle"><i class="fa-solid fa-list"></i>  Category</button>

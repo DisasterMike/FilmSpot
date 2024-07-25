@@ -3,12 +3,25 @@ class BookingsController < ApplicationController
   before_action :set_spot, only: [:new, :create]
   def index
     bookings = current_user.bookings
-    @bookings_by_date = bookings.sort_by(&:booking_date)
-    @bookings_by_name = bookings.sort_by { |booking| booking.spot.name }
-    @bookings_by_viewer = bookings.sort_by { |booking| booking.user.name }
+    if params[:query].present?
+      if params[:query] == "date"
+        @bookings = bookings.sort_by(&:booking_date)
+        @filter = "Date"
+      elsif params[:query] == "spot"
+        @bookings = bookings.sort_by { |booking| booking.spot.name }
+        @filter = "Spot"
+      elsif params[:query] == "viewer"
+        @bookings = bookings.sort_by { |booking| booking.user.name }
+        @filter = "Viewer"
+      end
+    else
+      @bookings = bookings.sort_by(&:booking_date)
+      @filter = "Date"
+    end
   end
 
   def show
+    @user = current_user
   end
 
   def new
@@ -29,18 +42,26 @@ class BookingsController < ApplicationController
   end
 
   def edit
-
   end
 
   def update
-    if @booking.update(booking_params)
+    if params[:status] == "canceled"
+      @booking.status = "canceled"
+      @booking.save
       redirect_to booking_path(@booking)
     else
-      render :edit, status: :unprocessable_entity
+      if @booking.update(booking_params)
+        redirect_to booking_path(@booking)
+      else
+        render :edit, status: :unprocessable_entity
+      end
     end
   end
 
+
+
   private
+
   def set_booking
     @booking = Booking.find(params[:id])
   end
