@@ -1,15 +1,19 @@
-<div data-action="click->booking-filter#disableFilterList"
+<% if current_user.owner? %>
+  <div data-action="click->booking-filter#disableFilterList"
   data-controller="booking-status booking-filter"
   class="container">
-  <h1 class="m-3">Spot Bookings</h1>
-  <hr>
-  <%= render "components/bookings_toolbar" %>
-  <%= render "components/bookings_filter" %>
-  <%# Bookings Cards %>
-  <%# /// %>
-  <div class="row p-3 m-3 b-background-box">
-    <% @bookings.each do |booking| %>
-      <%= render "components/bookings_card", booking: booking %>
-    <% end %>
+    <h1 class="m-3">Spot Bookings</h1>
+    <hr>
+    <%= render "components/bookings_toolbar" %>
+    <%= render "components/bookings_filter" %>
+    <%# Bookings Cards %>
+    <%# /// %>
+    <div class="row p-3 m-3 b-background-box">
+      <% @bookings.each do |booking| %>
+        <%= render "components/bookings_card", booking: booking %>
+      <% end %>
+    </div>
   </div>
-</div>
+<% else %>
+  <h1 class="m-3">This page is restricted to owners</h1>
+<% end %>

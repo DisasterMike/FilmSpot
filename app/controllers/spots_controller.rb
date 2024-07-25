@@ -1,4 +1,5 @@
 class SpotsController < ApplicationController
+  skip_before_action :authenticate_user!, only: :index
   def index
     destroy_overdue_bookings unless current_user.nil?
 
