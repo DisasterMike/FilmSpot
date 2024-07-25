@@ -37,6 +37,13 @@ class Owner::BookingsController < ApplicationController
     redirect_to owner_bookings_path(query: params[:query], t: params[:t])
   end
 
+  def all_bookings
+    # return if current_user.nil?
+    bookings = []
+    bookings = all_spot_bookings unless current_user.nil?
+    render json: bookings
+  end
+
   private
 
   def all_spot_bookings

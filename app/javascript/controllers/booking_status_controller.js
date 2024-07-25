@@ -14,23 +14,18 @@ export default class extends Controller {
     let thisPage = new URL(window.location.href);
     // check the params and set the button to what it was before
     if(thisPage.searchParams.get("t") === "all"){
-      console.log("found all");
       this.#setAllStatus();
     }
     if(thisPage.searchParams.get("t") === "pending"){
-      console.log("found pending");
       this.#setPendingStatus();
     }
     if(thisPage.searchParams.get("t") === "accepted"){
-      console.log("found accepted");
       this.#setAcceptedStatus();
     }
     if(thisPage.searchParams.get("t") === "declined"){
-      console.log("found declined");
       this.#setDeclinedStatus();
     }
     if(thisPage.searchParams.get("t") === "canceled"){
-      console.log("found canceled");
       this.#setCanceledStatus();
     }
   }
