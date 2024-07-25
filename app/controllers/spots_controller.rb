@@ -16,6 +16,9 @@ class SpotsController < ApplicationController
     @user = current_user
     @booking.spot_id = @spot.id
     @booking.user = current_user
+    # Filter Coordinate
+    @marker = {lat: @spot.latitude, lng: @spot.longitude}
+    # console
   end
 
   def new
