@@ -1,22 +1,27 @@
-<div class="container">
-  <h1 class="m-3"><%= @user.name %>'s Listed Properties</h1>
-  <hr>
-  <div class="spot-grid">
-    <% @spots.each do |spot| %>
-      <div class="spot-card"style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.3)), url(<%= spot.photo.attached? ? cl_image_path(spot.photo.key) : image_path("japan_restaurant.jpg") %>)">
-        <div class="spot-header">
-          <h4><%= spot.name %></h4>
-          <div>
-            <i class="fa-solid fa-location-dot"></i>
-            <%= spot.address %>
+
+<% if current_user.owner? %>
+  <div class="container">
+    <h1 class="m-3"><%= @user.name %>'s Listed Properties</h1>
+    <hr>
+    <div class="spot-grid">
+      <% @spots.each do |spot| %>
+        <div class="spot-card"style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.3)), url(<%= spot.photo.attached? ? cl_image_path(spot.photo.key) : image_path("japan_restaurant.jpg") %>)">
+          <div class="spot-header">
+            <h4><%= spot.name %></h4>
+            <div>
+              <i class="fa-solid fa-location-dot"></i>
+              <%= spot.address %>
+            </div>
+          </div>
+          <div class="spot-footer">
+            <%= link_to "View", spot_path(spot), class: "spot-footer-item spot-footer-item-left" %>
+            <%= link_to "Bookings", owner_bookings_path, class: "button-round-md spot-footer-item" %>
+            <div class="spot-footer-item"><%= spot.daily_rate %> / Day</div>
           </div>
         </div>
-        <div class="spot-footer">
-          <%= link_to "View", spot_path(spot), class: "spot-footer-item spot-footer-item-left" %>
-          <%= link_to "Bookings", owner_bookings_path, class: "button-round-md spot-footer-item" %>
-          <div class="spot-footer-item"><%= spot.daily_rate %> / Day</div>
-        </div>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
   </div>
-</div>
+<% else %>
+  <h1 class="m-3">This page is restricted to owners</h1>
+<% end %>
