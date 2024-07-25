@@ -42,7 +42,11 @@
   <div class="f-avatar my-3">
     <% if user_signed_in? %>
       <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <%= image_tag "user-default.jpg", class: "avatar", alt: "dropdown menu" %>
+        <% if current_user.owner? %>
+          <%= image_tag "Owner.jpg", class: "avatar", alt: "dropdown menu" %>
+        <% else %>
+          <%= image_tag "Filmer.jpg", class: "avatar", alt: "dropdown menu" %>
+        <% end %>
       </a>
       <div class="dropdown-menu dropdown-menu-end rounded-3" aria-labelledby="navbarDropdown">
         <%= link_to destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" do %>
