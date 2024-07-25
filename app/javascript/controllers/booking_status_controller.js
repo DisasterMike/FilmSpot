@@ -5,7 +5,7 @@ const defaultBackgroundClass = "btn-dark";
 const selectedBackgroundClass = "btn-warning";
 
 export default class extends Controller {
-  static targets = [ "all", "pending", "accepted", "declined", "statusCard", "statusWord" ]
+  static targets = [ "all", "pending", "accepted", "declined", "canceled", "statusCard", "statusWord" ]
 
   connect() {
     // console.log("hello from the booking status controller");
@@ -28,6 +28,10 @@ export default class extends Controller {
     if(thisPage.searchParams.get("t") === "declined"){
       console.log("found declined");
       this.#setDeclinedStatus();
+    }
+    if(thisPage.searchParams.get("t") === "canceled"){
+      console.log("found canceled");
+      this.#setCanceledStatus();
     }
   }
 
@@ -71,6 +75,15 @@ export default class extends Controller {
     window.location.search = thisPage.searchParams.toString()
   }
 
+  canceledClicked(){
+    // get the current URL
+    let thisPage = new URL(window.location.href);
+    // set the url to have a param t=declined
+    thisPage.searchParams.set('t', "canceled");
+    // reload the page with the new params
+    window.location.search = thisPage.searchParams.toString()
+  }
+
   //// Private variables
   ///
   //
@@ -99,6 +112,14 @@ export default class extends Controller {
     this.declinedTarget.classList.add(selectedBackgroundClass); // add highlighted bg
     this.#disableUnwantedCards("declined", this.statusCardTargets);
   }
+  #setCanceledStatus(){
+    this.#resetAllButtonTargetsCSS(); // reset...
+    this.canceledTarget.classList.remove(defaultBackgroundClass); // remove default bg
+    this.canceledTarget.classList.add(selectedBackgroundClass); // add highlighted bg
+    this.#disableUnwantedCards("canceled", this.statusCardTargets);
+  }
+
+
   #resetAllButtonTargetsCSS(){
     let targetsArray = [this.allTarget, this.pendingTarget, this.acceptedTarget, this.declinedTarget]
     targetsArray.forEach(element => {

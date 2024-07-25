@@ -20,9 +20,13 @@
         <strong><%= @booking.spot.daily_rate %></strong> / Day
       </p>
     </div>
-    <div>
-      <%= link_to "Edit", "#", class: "btn btn-warning" %>
-      <%= link_to "Cancel", "#", class: "btn btn-warning" %>
-    </div>
+    <% if @booking.status != "declined" && @booking.status != "canceled" %>
+      <div>
+        <% if @user.owner == false %>
+          <%= link_to "Edit", "#", class: "btn btn-warning" %>
+        <% end %>
+        <%= button_to("Cancel", {controller: "bookings", action: "update", id: @booking.id}, method: :patch, data: {turbo_confirm: 'Are you sure?'}, class: "btn btn-warning", params: { status: "canceled" } ) %>
+      </div>
+    <% end %>
   </div>
 </div>
