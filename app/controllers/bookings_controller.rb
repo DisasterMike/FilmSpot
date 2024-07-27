@@ -22,6 +22,7 @@ class BookingsController < ApplicationController
 
   def show
     @user = current_user
+    raise
   end
 
   def new
@@ -33,7 +34,6 @@ class BookingsController < ApplicationController
     @booking.spot = @spot
     @booking.user = current_user
     @booking.status = "pending"
-
     if @booking.save
       redirect_to booking_path(@booking)
     else

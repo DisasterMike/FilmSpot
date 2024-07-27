@@ -20,7 +20,7 @@
       <div class="booking-info-area">
         <div class="booking-section-card bg-dark">
           <h3><%= @booking.booking_date.strftime("%B %Y") %><h3/>
-            <h4 id="date-day"><%= @booking.booking_date.strftime("%e") %></h4>
+            <h4 id="date-day"><%= @booking.booking_date.strftime("%e")%> - <%= @booking.end_date.strftime("%e") %></h4>
           </div>
           <hr>
           <div class="">
