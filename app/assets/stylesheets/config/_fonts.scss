@@ -1,9 +1,44 @@
 // Import Google fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito:400,700|Work+Sans:400,700&display=swap');
+
+// Uncomment other Font and check the style for yourself
+
+// Roboto Font Url
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+// Sans Serif Font Url
+// @import url('https://fonts.googleapis.com/css?family=Nunito:400,700|Work+Sans:400,700&display=swap');
+
+// Libre Franklin Url
+// @import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100..900;1,100..900&display=swap');
+
+// DM Sans Url
+// @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Libre+Franklin:ital,wght@0,100..900;1,100..900&display=swap');
+
+// Rubik Url
+// @import url('https://fonts.googleapis.com/css2?family=Corinthia:wght@400;700&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Libre+Franklin:ital,wght@0,100..900;1,100..900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
 
 // Define fonts for body and headers
-$body-font: "Work Sans", "Helvetica", "sans-serif";
-$headers-font: "Nunito", "Helvetica", "sans-serif";
+
+// Roboto Font
+$body-font: "Roboto", "sans-serif";
+$headers-font: "Roboto", "sans-serif";
+
+// Sans Serif Font
+// $body-font: "Work Sans", "Helvetica", "sans-serif";
+// $headers-font: "Nunito", "Helvetica", "sans-serif";
+
+// Libre Franklin Font
+// $body-font: "Libre Franklin", "sans-serif";
+// $headers-font: "Libre Franklin", "sans-serif";
+
+// DM Sans Font
+// $body-font: "DM Sans", "sans-serif";
+// $headers-font: "DM Sans", "sans-serif";
+
+// Rubik Font
+// $body-font: "Rubik", "sans-serif";
+// $headers-font: "Rubik", "sans-serif";
 
 // To use a font file (.woff) uncomment following lines
 // @font-face {
