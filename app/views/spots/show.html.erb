@@ -1,6 +1,6 @@
 <div class="parent-container">
   <% if @spot.photo.key %>
-    <%= cl_image_tag @spot.photo.key, width: 800, height: 550,  crop: :fill, class: "spot-photo", alt: "#{@spot.name} image"%>
+    <%= cl_image_tag @spot.photo.key, width: 800, height: 850,  crop: :fill, class: "spot-photo", alt: "#{@spot.name} image"%>
   <% else %>
     <p>No Picture attached</p>
   <% end %>
@@ -23,12 +23,14 @@
       </div>
     <% end %>
 
-    <h2><%= @spot.daily_rate  %></h2>
-
-    <h1><%= @spot.name %></h1>
+    <%= render "components/display_map" %>
 
     <h3 class= "details">Spot Details</h3>
     <div class="property-details">
+      <div class="top-details">
+        <h2><%= @spot.daily_rate  %></h2>
+        <h1><%= @spot.name %></h1>
+      </div>
       <button class="accordion" data-controller="accordion" data-action="click->accordion#toggle"><i class="fa-solid fa-list"></i>  Category</button>
       <div class="panel" data-accordion-target="panel">
         <p><%= @spot.category %></p>
@@ -45,9 +47,5 @@
       </div>
     <%= render partial: "bookings/form", locals: { spot: @spot, booking: @booking } %>
     </div>
-
-
   </div>
 </div>
-
- <%= render "components/display_map" %>
