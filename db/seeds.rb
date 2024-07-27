@@ -9,14 +9,15 @@
 #   end
 
 Booking.destroy_all
-
+Spot.destroy_all
 filmers = User.all.select { |user| user.owner.nil? }
+owners = User.all.select { |user| user.owner? }
 # User.all.count > 1 ? filmers.sample.id : 1
 
 # Create 5 spots
 
 
-new_spot_1 = Spot.new(name: "Ramen Restaurant in Ueno", address: "6 Chome-4-18 Ueno, Taito City, Tokyo 110-0005", category: "restaurant", daily_rate: (500..1000).to_a.sample.to_f, description: Faker::Lorem.paragraph, user_id: 1)
+new_spot_1 = Spot.new(name: "Ramen Restaurant in Ueno", address: "Taito City, Tokyo 110-0005", category: "restaurant", daily_rate: (500..1000).to_a.sample.to_f, description: Faker::Lorem.paragraph, user: owners.sample)
 
 
 new_spot_1.photo.attach(
@@ -26,8 +27,9 @@ content_type: 'image/jpg'
 )
 
 new_spot_1.save
+puts new_spot_1.latitude
 
-new_spot_2 = Spot.new(name: "Ancient Temple Osaka", address: "1 Chome-11-18 Shitennoji, Tennoji Ward, Osaka, 543-0051", category: "other", daily_rate: (500..1000).to_a.sample.to_f, description: Faker::Lorem.paragraph, user_id: 1)
+new_spot_2 = Spot.new(name: "Ancient Temple Osaka", address: "1 Chome-11-18 Shitennoji, Tennoji Ward, Osaka", category: "other", daily_rate: (500..1000).to_a.sample.to_f, description: Faker::Lorem.paragraph, user: owners.sample)
 
 
 new_spot_2.photo.attach(
@@ -37,17 +39,51 @@ content_type: 'image/jpg'
 )
 
 new_spot_2.save
+puts new_spot_2.latitude
 
-new_spot_3 = Spot.new(name: "Abandoned Amusemart Park", address: "2 Chome-28-1 Asakusa, Taito City, Tokyo 111-0032", category: "other", daily_rate: (500..1000).to_a.sample.to_f, description: Faker::Lorem.paragraph, user_id: 1)
+new_spot_3 = Spot.new(name: "Urban Basketball Court", address: "Shibuya City, Tokyo 150-0041", category: "other", daily_rate: (500..1000).to_a.sample.to_f, description: Faker::Lorem.paragraph, user: owners.sample)
 
 new_spot_3.photo.attach(
-io: URI.open('https://lh3.googleusercontent.com/p/AF1QipNPvA0LZThYaGXzsrPyXS4BD6BJPLxcGUBwUfuc=s1360-w1360-h1020-rw'),
+io: URI.open('https://lh5.googleusercontent.com/p/AF1QipNj7RJO95Mcy68OzFslqggtvYT0GPVKOf7bWDdw=w426-h240-k-no'),
 filename: 'image1.jpg',
 content_type: 'image/jpg'
 )
 
 new_spot_3.save
+puts new_spot_3.latitude
 
+new_spot_4 = Spot.new(name: "Local Clinic", address: "Shinjuku City, Tokyo 169-0073", category: "other", daily_rate: (500..1000).to_a.sample.to_f, description: Faker::Lorem.paragraph, user: owners.sample)
+
+new_spot_4.photo.attach(
+io: URI.open('https://lh5.googleusercontent.com/p/AF1QipNFGxU16YkMgkticRwo8bDEHRDuAawIFqcunoOU=w408-h272-k-no'),
+filename: 'image1.jpg',
+content_type: 'image/jpg'
+)
+
+new_spot_4.save
+puts new_spot_4.latitude
+
+new_spot_5 = Spot.new(name: "Business Conference Hall", address: "160-0021 Tokyo, Shinjuku City", category: "other", daily_rate: (500..1000).to_a.sample.to_f, description: Faker::Lorem.paragraph, user: owners.sample)
+
+new_spot_5.photo.attach(
+io: URI.open('https://lh5.googleusercontent.com/p/AF1QipOhGk8NOSzynrr0zCXfvjMgbSIDRvXuu91ve8Ox=w408-h276-k-no'),
+filename: 'image1.jpg',
+content_type: 'image/jpg'
+)
+
+new_spot_5.save
+puts new_spot_5.latitude
+
+new_spot_6 = Spot.new(name: "Modern High School", address: "Meguro City, Tokyo 153-0052", category: "other", daily_rate: (500..1000).to_a.sample.to_f, description: Faker::Lorem.paragraph, user: owners.sample)
+
+new_spot_6.photo.attach(
+io: URI.open('https://lh5.googleusercontent.com/p/AF1QipNU0ZTuFddp6RPRY7XYk-LPnKCre_CHyoQEnHhz=w408-h272-k-no'),
+filename: 'image1.jpg',
+content_type: 'image/jpg'
+)
+
+new_spot_6.save
+puts new_spot_6.latitude
 
 puts "Created 5 restaurant spots"
 

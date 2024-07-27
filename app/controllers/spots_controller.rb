@@ -1,7 +1,7 @@
 class SpotsController < ApplicationController
   skip_before_action :authenticate_user!, only: :index
   def index
-    destroy_overdue_bookings unless current_user.nil?
+    # destroy_overdue_bookings unless current_user.nil?
 
     if params[:query].present?
       @spots = Spot.search_by_name_address_category(params[:query])
@@ -17,6 +17,9 @@ class SpotsController < ApplicationController
     @user = current_user
     @booking.spot_id = @spot.id
     @booking.user = current_user
+
+    # calling method under private
+    set_coordinates
   end
 
   def new
@@ -48,5 +51,16 @@ class SpotsController < ApplicationController
 
   def spots_params
     params.require(:spot).permit(:name, :address, :description, :category, :daily_rate, :photo)
+  end
+
+  def set_coordinates
+    @marker = {
+      lat: @spot.latitude,
+      lng: @spot.longitude,
+      info_window_html: render_to_string(
+        partial: "info_window",
+        locals: { spot: @spot }
+      )
+    }
   end
 end
