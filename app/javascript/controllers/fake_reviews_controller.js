@@ -15,7 +15,7 @@ export default class extends Controller {
   static targets = [ "review" ]
 
   connect() {
-    console.log("hello from fake reviews controller");
+    // console.log("hello from fake reviews controller");
 
     previousReview = this.#getRandomReview("");
     // console.log(previousReview);
@@ -29,7 +29,7 @@ export default class extends Controller {
 
   update(previous){
     const newReview = this.#getRandomReview(previous);
-    console.log(newReview);
+    // console.log(newReview);
     this.reviewTarget.innerText = newReview;
   }
 

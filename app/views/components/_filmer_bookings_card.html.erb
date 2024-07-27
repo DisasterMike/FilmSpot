@@ -16,7 +16,7 @@
       <% status_border_color = "border-danger" if booking.status == "declined" %>
       <%# image_tag("https://pbblogassets.s3.amazonaws.com/uploads/2016/07/Professional-Cinema-Camera.jpg", alt: "generic movie shooting image", width: 200) %>
       <h3><strong><%= booking.spot.name %></strong></h3>
-      <p><i class="fa-regular fa-calendar-days"></i> <span><%= booking.booking_date %></span></p>
+      <p><i class="fa-regular fa-calendar-days"></i> <span><%= booking.booking_date %> <span style="font-weight: bold;">-</span> <%= booking.end_date %></span></p>
       <p class="b-main-text"><strong>Owned by:</strong> <%= booking.spot.user.name %> <img src="<%= booking.spot.user.photo.attached ? cl_image_path(booking.spot.user.photo.key) : image_path("user-default.jpg") %>" alt="" class="avatar"></p>
       <% if booking.status == "pending" %>
         <p class="b-main-text"><strong>Booking status:</strong> <span data-booking-status-target="statusWord" class="<%= status_color %>"><%= booking.status %></span></p>
