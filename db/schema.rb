@@ -10,6 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema[7.1].define(version: 2024_07_27_020418) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,7 +71,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_27_020418) do
     t.string "address"
     t.text "description"
     t.string "category"
-    t.float "daily_rate"
+    t.integer "daily_rate"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
