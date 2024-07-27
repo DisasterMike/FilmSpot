@@ -1,4 +1,4 @@
-<div class="side-nav bg-white d-flex flex-column align-items-center justify-content-between gap-3">
+<div data-controller="booking-notifications" data-booking-notifications-spots-value="<%= current_user.spots.map {|x| x.bookings }.flatten.to_json unless current_user.nil? %>" class="side-nav bg-white d-flex flex-column align-items-center justify-content-between gap-3">
   <%# image_tag "filmspot_logo.jpg", style: "width: 50px", class: "my-3" %>
   <%= link_to root_path, class: "navbar-brand" do %>
     <%= image_tag "filmspot_logo.jpg", style: "width: 45px", class: "my-3" %>
@@ -27,6 +27,7 @@
         <%= link_to owner_bookings_path, class: "nav-link" do %>
           <div data-action="mouseover->nav-icons#popUp:stop" class="popUp" style="position: relative;">
             <i class="fa-solid fa-magnifying-glass-location nav-icon p-3"></i>
+            <p data-booking-notifications-target="notifications" class="booking-notifications d-none">0</p>
             <p data-nav-icons-target="icon" class="bg-white text-dark rounded-3 py-2 px-3 fw-bold nav-pop-up">Spot Bookings</p>
           </div>
         <% end %>
