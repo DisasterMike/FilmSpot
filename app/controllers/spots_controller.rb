@@ -1,6 +1,7 @@
 class SpotsController < ApplicationController
+  skip_before_action :authenticate_user!, only: :index
   def index
-    destroy_overdue_bookings unless current_user.nil?
+    # destroy_overdue_bookings unless current_user.nil?
 
     if params[:query].present?
       @spots = Spot.search_by_name_address_category(params[:query])
