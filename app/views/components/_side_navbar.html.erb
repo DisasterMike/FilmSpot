@@ -1,4 +1,4 @@
-<div data-controller="booking-notifications" data-booking-notifications-user-nil-value="<%= current_user.nil? %>" class="side-nav bg-white d-flex flex-column align-items-center justify-content-between gap-3">
+<div data-controller="booking-notifications" data-booking-notifications-user-value="<%= current_user.nil? %>" data-booking-notifications-spots-value="<%= current_user.spots.map {|x| x.bookings }.flatten.to_json unless current_user.nil? %>" class="side-nav bg-white d-flex flex-column align-items-center justify-content-between gap-3">
   <%# image_tag "filmspot_logo.jpg", style: "width: 50px", class: "my-3" %>
   <%= link_to root_path, class: "navbar-brand" do %>
     <%= image_tag "filmspot_logo.jpg", style: "width: 45px", class: "my-3" %>
