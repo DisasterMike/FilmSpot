@@ -17,6 +17,9 @@ class SpotsController < ApplicationController
     @user = current_user
     @booking.spot_id = @spot.id
     @booking.user = current_user
+
+    # calling method under private
+    set_coordinates
   end
 
   def new
@@ -48,5 +51,16 @@ class SpotsController < ApplicationController
 
   def spots_params
     params.require(:spot).permit(:name, :address, :description, :category, :daily_rate, :photo)
+  end
+
+  def set_coordinates
+    @marker = {
+      lat: @spot.latitude,
+      lng: @spot.longitude,
+      info_window_html: render_to_string(
+        partial: "info_window",
+        locals: { spot: @spot }
+      )
+    }
   end
 end
