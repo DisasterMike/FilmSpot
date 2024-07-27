@@ -9,6 +9,8 @@
           <i class="fa-solid fa-clock" id="status-icon" style="color: #ffab5c;"></i>
         <% elsif @booking.status == "accepted"%>
           <i class="fa-solid fa-circle-check" id="status-icon" style="color: #63E6BE;"></i>
+        <% elsif @booking.status == "canceled" %>
+          <i class="fa-solid fa-circle-xmark text-warning" id="status-icon"></i>
         <% else %>
           <i class="fa-solid fa-circle-xmark" id="status-icon" style="color: #f44343;"></i>
         <% end %>
