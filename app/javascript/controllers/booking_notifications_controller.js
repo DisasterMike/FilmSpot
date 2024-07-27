@@ -3,43 +3,67 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="booking-notifications"
 export default class extends Controller {
   static targets = [ "notifications" ]
-  static values = { spots: Array }
+  static values = { userNil: Boolean }
 
   connect() {
+    // if(this.userNilValue) return;
+
     this.update();
 
-    this._timer = setInterval(() => {
-      this.update();
-    }, 5000);
+    // this._timer = setInterval(() => {
+    //   this.update();
+    // }, 5000);
 
   }
 
   update(){
-    let pendingCount = 0;
-    // window.location.hostname
-    // console.log(`https://${window.location.host}/owner/bookings/all`);
-    // console.log(window.location.origin);
-    fetch(`${window.location.origin}/owner/bookings/all`)
-    .then(response => response.json())
-    .then((data) => {
-      // console.log(data);
-      data.forEach(element => {
-        if(element.status === "pending"){
-          pendingCount += 1;
-        }
-      });
-      // console.log(pendingCount);
-      this.notificationsTarget.innerText = pendingCount;
+    if(this.userNilValue) return;
 
-      if(pendingCount === 0){
-        this.notificationsTarget.classList.add("d-none");
-      }else{
-        this.notificationsTarget.classList.remove("d-none");
+    let pendingCount = 0;
+    fetch(`${window.location.origin}/owner/bookings/all`)
+    .then(response => response.text()) // Parse the response as text
+    .then(text => {
+      try {
+        const data = JSON.parse(text); // Try to parse the response as JSON
+        // The response was a JSON object
+        // Do your JSON handling here
+        data.forEach(element => {
+          if(element.status === "pending"){
+            pendingCount += 1;
+          }
+        });
+        this.notificationsTarget.innerText = pendingCount;
+
+        if(pendingCount === 0){
+          this.notificationsTarget.classList.add("d-none");
+        }else{
+          this.notificationsTarget.classList.remove("d-none");
+        }
+      } catch(err) {
+        // The response wasn't a JSON object
+        // Do your text handling here
+        console.log(err);
       }
     });
-  }
 
-  // static afterLoad(identifier, application){
-  //   console.log("hello yooo");
-  // }
+
+    // fetch(`${window.location.origin}/owner/bookings/all`)
+    // .then(response => response.json())
+    // .then((data) => {
+    //   // console.log(data);
+    //   data.forEach(element => {
+    //     if(element.status === "pending"){
+    //       pendingCount += 1;
+    //     }
+    //   });
+    //   // console.log(pendingCount);
+    //   this.notificationsTarget.innerText = pendingCount;
+
+    //   if(pendingCount === 0){
+    //     this.notificationsTarget.classList.add("d-none");
+    //   }else{
+    //     this.notificationsTarget.classList.remove("d-none");
+    //   }
+    // });
+  }
 }
