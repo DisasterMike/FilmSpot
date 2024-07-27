@@ -1,4 +1,3 @@
-
 <% if current_user.owner? %>
   <div class="container">
     <h1 class="m-3"><%= @user.name %>'s Listed Properties</h1>
@@ -15,8 +14,8 @@
           </div>
           <div class="spot-footer">
             <%= link_to "View", spot_path(spot), class: "spot-footer-item spot-footer-item-left" %>
-            <%= link_to "Bookings", owner_bookings_path, class: "button-round-md spot-footer-item" %>
-            <div class="spot-footer-item"><%= spot.daily_rate %> / Day</div>
+            <%= link_to "Bookings", owner_bookings_path, class: "button-round-md spot-footer-item bg-warning" %>
+            <div class="spot-footer-item">¥ <%= spot.daily_rate %> / Day</div>
           </div>
         </div>
       <% end %>

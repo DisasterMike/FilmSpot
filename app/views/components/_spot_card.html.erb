@@ -6,9 +6,9 @@
     </div>
   </div>
   <div class="spot-footer">
-    <div><img src="<%= spot.user.photo.attached ? cl_image_path(spot.user.photo.key) : image_path("user-default.jpg") %>" alt="" class="avatar"></div>
+    <div><%= image_tag "Owner.jpg", class: "avatar", alt: "owner pic" %></div>
     <div>
-      <%= link_to "Details", spot_path(spot), class: "button-round-md" %>
+      <%= link_to "Details", spot_path(spot), class: "button-round-md bg-warning" %>
     </div>
     <div>¥<%= spot.daily_rate %> / Day</div>
   </div>
