@@ -33,7 +33,6 @@ class BookingsController < ApplicationController
     @booking.spot = @spot
     @booking.user = current_user
     @booking.status = "pending"
-    raise
     if @booking.save
       redirect_to booking_path(@booking)
     else
