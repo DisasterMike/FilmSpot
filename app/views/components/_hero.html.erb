@@ -1,6 +1,6 @@
 <div class="row m-0">
   <div class="col-12 col-lg-7 p-0 bg-dark">
-    <div class="home-banner d-flex flex-column justify-content-end" style="padding: 200px 0 100px 0;">
+    <div class="home-banner d-flex flex-column justify-content-end" style="padding: 250px 0 150px 0;">
       <div class="d-flex align-items-end bg-white me-3" style="box-shadow: inset -20px 7px 13px 14px rgba(0, 0, 0, 0.2); border-radius: 0 10px 10px 0;">
         <%= image_tag "filmspot_logo_PNG.png", style: "width: 135px;" %>
         <h1 style="font-size: 5rem">Film<span class="text-warning">Spot</span></h1>
@@ -9,25 +9,33 @@
     </div>
   </div>
   <div class="col-12 col-lg-5 bg-dark d-flex justify-content-center align-items-center">
-    <div class="p-3 my-3 text-warning fs-5 border border-2 border-warning">
-      <p><span style="font-size: 3rem;">"</span>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-        Eum rerum earum eligendi, saepe nostrum non tempora quae. Sunt aliquam earum,
-        repellat laudantium, corporis ea debitis perferendis, totam autem numquam quaerat.<span style="font-size: 3rem;">"</span></p>
+    <div data-controller="fake-reviews" data-fake-reviews-reviews-value="<%= @fake_reviews %>" class="p-3 my-3 text-warning fs-5 border border-2 border-warning rounded-3" style="top: 20px;
+    position: relative;">
+      <p><span style="font-size: 3rem;">"</span><span data-fake-reviews-target="review">This app is so cool!</span><span style="font-size: 3rem;">"</span></p>
     </div>
   </div>
 </div>
 <div class="for-who-container">
   <div class="container p-3">
     <h2 class="text-dark border-start border-3 border-dark ps-3">We're here for you!</h2>
-    <div class="row text-center">
+    <div class="row text-center p-3">
       <div class="col-4">
-        <h2>Youtubers</h2>
+        <div>
+          <i class="fa-brands fa-youtube" style="font-size: 3rem;"></i>
+          <h2>Youtubers</h2>
+        </div>
       </div>
       <div class="col-4">
-        <h2>Film Students</h2>
+        <div>
+          <i class="fa-solid fa-film" style="font-size: 3rem;"></i>
+          <h2>Film Students</h2>
+        </div>
       </div>
       <div class="col-4">
-        <h2>Producers</h2>
+        <div>
+          <i class="fa-solid fa-microphone-lines" style="font-size: 3rem;"></i>
+          <h2>Producers</h2>
+        </div>
       </div>
     </div>
   </div>
