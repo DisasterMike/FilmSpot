@@ -26,7 +26,7 @@ class Spot < ApplicationRecord
   validates :category, presence: true
   # validates :category, inclusion: %w[park restaurant house other]
 
-  # Searches through address & some validation
+  # Geocode searches through address & some validation
   geocoded_by :address
   after_validation :geocode, if: :will_save_change_to_address?
 end

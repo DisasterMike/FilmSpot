@@ -1,10 +1,21 @@
 .details-container {
   padding-top: 10px;
-  background-color: rgb(133, 130, 130);
+  background-color: $medium-gray;
 }
 
+.property-details {
+  width: 606px;
+  background-color: $pastel-gray;
+  color: $white;
+  padding: 20px;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+
+
+
 .accordion {
-  background-color: #eee;
+  background-color: $light-gray;
   color: #444;
   cursor: pointer;
   padding: 18px;
@@ -13,29 +24,31 @@
   border: none;
   outline: none;
   transition: 0.4s;
+  border-radius: 5px;
 }
 
 .accordion:after {
   content: '\02795'; /* Unicode character for "plus" sign (+) */
   font-size: 13px;
-  color: #777;
-  float: right;
-  margin-left: 5px;
-}
+    color: #777;
+    float: right;
+    margin-left: 5px;
+  }
 
-.active:after {
-  content: "\2796"; /* Unicode character for "minus" sign (-) */
-}
+  .active:after {
+    content: "\2796"; /* Unicode character for "minus" sign (-) */
+  }
 
 
-.active, .accordion:hover {
-  background-color: #ccc;
-}
+  .active, .accordion:hover {
+    background-color: #ccc;
+  }
 
-.panel {
-  padding: 5px 18px;
-  background-color: #f4f4f4;
-  overflow: hidden;
-  max-height: 0;
-  transition: max-height 0.4s ease-out;
-}
+  .panel {
+    padding: 5px 18px;
+    background-color: $pastel-gray;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.4s ease-out;
+    color: $black;
+  }
