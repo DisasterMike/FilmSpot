@@ -2,7 +2,7 @@
   <% if @spot.photo.key %>
     <%= cl_image_tag @spot.photo.key, width: 800, height: 850,  crop: :fill, class: "spot-photo", alt: "#{@spot.name} image"%>
   <% else %>
-    <p>No Picture attached</p>
+    <h2>No Image Attached</h2>
   <% end %>
 
   <% upcoming_booking = @spot.bookings.find {|booking| booking.user == @user } %>
